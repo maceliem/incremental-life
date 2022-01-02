@@ -1,20 +1,11 @@
-<svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="500" height="500"
->
-    
-    <rect 
-        width="500" height="500" 
-        fill="#27dddd"
-    />
-    <path 
-        d="
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+
+    <rect width="500" height="500" fill="#27dddd" />
+    <path d="
         M 0 300 
         q 100 -75 250 50 q 100 75 250 -50 
         L 500 500 L 0 500
-        " 
-        fill="#5cee57"
-    />
+        " fill="#5cee57" />
     <!--<rect 
         width="500" height="500" 
         fill="none"

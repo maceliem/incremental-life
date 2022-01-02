@@ -1,4 +1,13 @@
-body {margin: 0;}
+:root {
+    --main-color: rgb(0, 0, 190);
+    --element-color: rgb(38, 91, 235);
+    --hover-element-color: rgb(29, 75, 201);
+    --clicked-element-color: rgb(23, 60, 163);
+}
+
+body {
+    margin: 0;
+}
 
 .background {
     position: absolute;
@@ -14,27 +23,82 @@ body {margin: 0;}
     height: 100vh;
 }
 
-.menu div{
-    background-color: rgb(0, 0, 190);
+.menu div {
+    background-color: var(--main-color);
     width: 16%;
     height: 90%;
-    border-width: 3px;
-    border-style: solid;
-    border-color: black;
+    border: 3px solid black;
 
 }
 
-.menu :first-child {
+.menu div:first-child {
     border-top-right-radius: 6%;
     border-bottom-right-radius: 6%;
 }
 
-.menu :last-child {
+.menu div:last-child {
     border-top-left-radius: 6%;
     border-bottom-left-radius: 6%;
 }
 
-.menu .main {
+.menu div.main {
     width: 50%;
     border-radius: 3%;
+}
+
+.menu h1 {
+    margin: 20px;
+    text-align: center;
+    background-color: var(--element-color);
+    border: 2px solid black;
+    border-bottom: 4px solid black;
+}
+
+.menu h2 {
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    text-decoration: underline 4px;
+}
+
+.menu button {
+    width: 80%;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 10%;
+
+    transition-duration: 0.4s;
+    background-color: var(--element-color);
+    border: 3px solid black;
+}
+
+.menu button:hover {
+    background-color: var(--hover-element-color);
+}
+
+.menu button:active {
+    background-color: var(--clicked-element-color);
+}
+
+.menu .setting {
+    margin: 10%;
+    width: 80%;
+    height: 5%;
+    border: none;
+}
+
+.menu .setting .dropdown {
+    display: none;
+    padding-bottom: 40px;
+    width: 100%;
+    height: 0;
+    border: 2px solid black;
+    border-radius: 5%;
+}
+
+.menu .setting:hover .dropdown {
+    display: block;
+    height: auto;
 }
