@@ -1,11 +1,17 @@
 {
     "resources": {
-        "wood": 0
+        "wood": 0,
+        "stone": 0
     },
     "speed": {
-        "wood": 10
+        "wood": 10,
+        "stone": 100
     },
     "config": {
         "color": "Blue"
+    },
+    "inventory": {
+        "axe": 1,
+        "pickaxe": 0
     }
 }

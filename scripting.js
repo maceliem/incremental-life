@@ -10,7 +10,13 @@ fetch("stats.json")
     });
 
 
-function runBar(type) {
+function runBar(type, reqirements) {
+    for (thing of reqirements) {
+        if(stats.inventory[thing] < 1){
+            alert(`You need a ${thing} first`)
+            return
+        }
+    }
     var progress = document.getElementById(`${type}Bar`)
     if (progress.dataset.active == "false") {
         progress.dataset.active = true

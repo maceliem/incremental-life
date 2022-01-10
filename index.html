@@ -15,19 +15,24 @@
     <div class="menu">
         <div>
             <h1>Menu</h1>
-            <button onclick="switchMenu('resource')">resourceGen</button>
-            <button onclick="switchMenu('shop')">shop</button>
+            <button onclick="switchMenu('resource')">resources</button>
+            <button onclick="switchMenu('crafting')">crafting</button>
         </div>
 
         <div class="main" id="resource">
             <div class="resourceGen">
                 <label>wood</label>
-                <progress data-active="false" id="woodBar" value="0" max="100" onclick="runBar('wood')"></progress>
+                <progress data-active="false" id="woodBar" value="0" max="100" onclick="runBar('wood', ['axe'])"></progress>
                 <p id="woodCounter">0</p>
+            </div>
+            <div class="resourceGen">
+                <label>stone</label>
+                <progress data-active="false" id="stoneBar" value="0" max="100" onclick="runBar('stone', ['pickaxe'])"></progress>
+                <p id="stoneCounter">0</p>
             </div>
         </div>
 
-        <div class="main" id="shop">
+        <div class="main" id="crafting">
             
         </div>
 
