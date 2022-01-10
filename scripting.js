@@ -1,10 +1,14 @@
-var stats 
+var stats
 
 fetch("stats.json")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => stats = data);
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        stats = data
+        loadGame()
+    });
+
 
 function runBar(type) {
     var progress = document.getElementById(`${type}Bar`)
@@ -17,6 +21,7 @@ function runBar(type) {
                 progress.dataset.active = false
                 stats.resources[type]++
                 updateValues()
+                saveGame()
                 clearInterval(timer)
             }
         }, 10)
@@ -25,13 +30,28 @@ function runBar(type) {
 
 function updateValues() {
     var main = document.getElementById("main")
-    for (child of main.childNodes){
-        if(child.nodeName != "#text"){
-            if (child.classList.contains("resourceGen")){
+    for (child of main.childNodes) {
+        if (child.nodeName != "#text") {
+            if (child.classList.contains("resourceGen")) {
                 var text = child.childNodes[3]
-                var type = text.id.replace("Counter","")
+                var type = text.id.replace("Counter", "")
                 text.innerHTML = stats.resources[type]
             }
         }
     }
+}
+
+function saveGame() {
+    localStorage.setItem("save", JSON.stringify(stats))
+}
+
+function loadGame() {
+    var data = JSON.parse(localStorage.getItem("save"))
+    for (key of Object.keys(data)) {
+        for (element of Object.keys(data[key])) {
+            stats[key][element] = data[key][element]
+        }
+    }
+    updateValues()
+    changeColor(stats.config.color)
 }

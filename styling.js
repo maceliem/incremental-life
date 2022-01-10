@@ -1,10 +1,10 @@
-var colors 
+var colors
 
 fetch("colors.json")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => colors = data);
+    .then(response => {
+        return response.json();
+    })
+    .then(data => colors = data);
 
 
 function changeColor(color) {
@@ -17,8 +17,8 @@ function changeColor(color) {
             ${scheme[element][2]}
         )`);
     }
-
+    stats.config.color = color
+    saveGame()
 }
 
-   
-    
+

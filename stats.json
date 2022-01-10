@@ -2,8 +2,10 @@
     "resources": {
         "wood": 0
     },
-    
     "speed": {
         "wood": 10
+    },
+    "config": {
+        "color": "Blue"
     }
 }
