@@ -24,7 +24,7 @@ body {
     height: 100vh;
 }
 
-.menu div {
+.menu> div {
     background-color: var(--main-color);
     width: 16%;
     height: 90%;
@@ -32,12 +32,12 @@ body {
 
 }
 
-.menu div:first-child {
+.menu> div:first-child {
     border-top-right-radius: 6%;
     border-bottom-right-radius: 6%;
 }
 
-.menu div:last-child {
+.menu> div:last-child {
     border-top-left-radius: 6%;
     border-bottom-left-radius: 6%;
 }
@@ -46,6 +46,10 @@ body {
     width: 50%;
     border-radius: 3%;
     display: none;
+}
+
+#crafting {
+    display: block;
 }
 
 .menu h1 {
@@ -146,4 +150,30 @@ body {
     font-size: 3vw;
     padding-right: 2vw;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.menu #crafting>* {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.menu #crafting>* div {
+    background-color: yellow;
+    width: 140px;
+    height: 120px;
+    margin: 10px;
+    transition: 1s;
+}
+
+.menu #crafting>* div:hover {
+    background-color: yellow;
+    width: 140px;
+    height: 260px;
+    margin: 10px;
+    grid-row: span 2;
 }
