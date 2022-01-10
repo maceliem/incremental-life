@@ -21,4 +21,17 @@ function changeColor(color) {
     saveGame()
 }
 
-
+function updateValues() {
+    var pages = document.getElementsByClassName("main")
+    for (page of pages) {
+        for (child of page.childNodes) {
+            if (child.nodeName != "#text") {
+                if (child.classList.contains("resourceGen")) {
+                    var text = child.childNodes[5]
+                    var type = text.id.replace("Counter", "")
+                    text.innerHTML = stats.resources[type]
+                }
+            }
+        }
+    }
+}
