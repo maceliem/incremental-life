@@ -42,9 +42,10 @@ body {
     border-bottom-left-radius: 6%;
 }
 
-.menu div#main {
+.menu div.main {
     width: 50%;
     border-radius: 3%;
+    display: none;
 }
 
 .menu h1 {

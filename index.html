@@ -15,16 +15,22 @@
     <div class="menu">
         <div>
             <h1>Menu</h1>
-            <button>fish</button>
-            <button>fish</button>
-            <button>fish</button>
+            <button onclick="switchMenu('resource')">resourceGen</button>
+            <button onclick="switchMenu('shop')">shop</button>
         </div>
-        <div id="main">
+
+        <div class="main" id="resource">
             <div class="resourceGen">
+                <label>wood</label>
                 <progress data-active="false" id="woodBar" value="0" max="100" onclick="runBar('wood')"></progress>
                 <p id="woodCounter">0</p>
             </div>
         </div>
+
+        <div class="main" id="shop">
+            
+        </div>
+
         <div>
             <h1>Settings</h1>
             <div class="setting">

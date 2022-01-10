@@ -29,13 +29,15 @@ function runBar(type) {
 }
 
 function updateValues() {
-    var main = document.getElementById("main")
-    for (child of main.childNodes) {
-        if (child.nodeName != "#text") {
-            if (child.classList.contains("resourceGen")) {
-                var text = child.childNodes[3]
-                var type = text.id.replace("Counter", "")
-                text.innerHTML = stats.resources[type]
+    var pages = document.getElementsByClassName("main")
+    for (page of pages) {
+        for (child of page.childNodes) {
+            if (child.nodeName != "#text") {
+                if (child.classList.contains("resourceGen")) {
+                    var text = child.childNodes[5]
+                    var type = text.id.replace("Counter", "")
+                    text.innerHTML = stats.resources[type]
+                }
             }
         }
     }
@@ -54,4 +56,11 @@ function loadGame() {
     }
     updateValues()
     changeColor(stats.config.color)
+}
+
+function switchMenu(id) {
+    for (page of document.getElementsByClassName("main")){
+        page.style.display = "none"
+    }
+    document.getElementById(id).style.display = "block"
 }
