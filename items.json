@@ -1,0 +1,14 @@
+{
+    "axe": {
+        "cost": [
+            {"wood":0},
+            {"wood":10},
+            {"wood":20,"stone":5}
+        ],
+        "modifier": [
+            {"wood":{"speed":0}},
+            {"wood":{"speed":-2}},
+            {"wood":{"speed":-2}}
+        ]
+    }
+}
