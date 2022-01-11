@@ -7,6 +7,7 @@ fetch("colors.json")
     .then(data => colors = data);
 
 
+//change colorscheme of everything to color
 function changeColor(color) {
     var scheme = colors[color]
     var style = document.documentElement.style
@@ -21,19 +22,21 @@ function changeColor(color) {
     saveGame()
 }
 
+//update all textvalues
 function updateValues() {
     var pages = document.getElementsByClassName("main")
     for (page of pages) {
         for (child of page.childNodes) {
             if (child.nodeName != "#text") {
                 
-                //
+                //update resource indicators
                 if (child.classList.contains("resourceGen")) {
                     var text = child.childNodes[5]
                     var type = text.id.replace("Counter", "")
                     text.innerHTML = stats.resources[type]
                 }
                 
+                //update crafting costs
                 if (child.classList.contains("craftElement")) {
                     for (node of child.childNodes) {
                         if (node.nodeName == "UL"){
@@ -44,6 +47,7 @@ function updateValues() {
                             var tier = stats.inventory[tool]
                             var costs = items[tool].costs[tier]
 
+                            //add new list elements
                             for ([type, value] of Object.entries(costs)){
                                 var li = document.createElement("li")
                                 li.innerHTML = `${type} ${value}`

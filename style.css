@@ -10,6 +10,7 @@ body {
     margin: 0;
 }
 
+/*base stuff*/
 .background {
     position: absolute;
     z-index: -1;
@@ -85,6 +86,7 @@ button:active {
     background-color: var(--clicked-element-color);
 }
 
+/*right bar stuff*/
 .setting {
     margin: 10%;
     width: 80%;
@@ -106,6 +108,7 @@ button:active {
     height: auto;
 }
 
+/*resource page stuff*/
 #resource {
     display: grid;
     grid-template-rows: max-content;
@@ -153,6 +156,7 @@ button:active {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+/*crafting page stuff*/
 #crafting {
     margin: 0;
     padding: 0;

@@ -13,12 +13,15 @@
 <body>
     <img class="background" src="img\background.svg" alt="background">
     <div class="menu">
+
+        <!--right bar-->
         <div>
             <h1>Menu</h1>
             <button onclick="switchMenu('resource')">resources</button>
             <button onclick="switchMenu('crafting')">crafting</button>
         </div>
 
+        <!--resourceGen page-->
         <div class="main" id="resource">
             <div class="resourceGen">
                 <label>wood</label>
@@ -34,6 +37,7 @@
             </div>
         </div>
 
+        <!--crafting page-->
         <div class="main" id="crafting">
             <div id="axe" class="craftElement" onclick="craft('axe')">
                 <h1>Axe</h1>
@@ -49,6 +53,7 @@
             </div>
         </div>
 
+        <!--left bar-->
         <div>
             <h1>Settings</h1>
             <div class="setting">
