@@ -152,12 +152,9 @@ button:active {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#crafting>* {
-    width: auto;
-    height: auto;
+#crafting {
     margin: 0;
     padding: 0;
-    border: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 }

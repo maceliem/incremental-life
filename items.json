@@ -10,5 +10,17 @@
             {"speed":{"wood":-2}},
             {"speed":{"wood":-2}}
         ]
+    },
+    "pickaxe": {
+        "costs": [
+            {"wood":20},
+            {"wood":50,"stone":20},
+            {"wood":200,"stone":50}
+        ],
+        "modifier": [
+            {"speed":{"stone":0}},
+            {"speed":{"stone":-10}},
+            {"speed":{"stone":-10}}
+        ]
     }
 }

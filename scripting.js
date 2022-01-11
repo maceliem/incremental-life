@@ -1,3 +1,13 @@
+var items
+
+fetch("items.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        items = data
+    });
+
 var stats
 
 fetch("stats.json")
@@ -7,16 +17,6 @@ fetch("stats.json")
     .then(data => {
         stats = data
         loadGame()
-    });
-
-var items
-
-fetch("items.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        items = data
     });
 
 function runBar(type, reqirements) {
@@ -62,7 +62,7 @@ function switchMenu(id) {
     for (page of document.getElementsByClassName("main")) {
         page.style.display = "none"
     }
-    document.getElementById(id).style.display = "block"
+    document.getElementById(id).style.display = "grid"
 }
 
 function craft(item) {
