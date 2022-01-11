@@ -68,7 +68,8 @@ function switchMenu(id) {
     for (page of document.getElementsByClassName("main")) {
         page.style.display = "none"
     }
-    document.getElementById(id).style.display = "grid"
+    var page = document.getElementById(id)
+    page.style.display = page.dataset.type
 }
 
 //craft item, if we have the resources needed

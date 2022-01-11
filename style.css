@@ -110,8 +110,7 @@ button:active {
 
 /*resource page stuff*/
 #resource {
-    display: grid;
-    grid-template-rows: max-content;
+    display: block;
 }
 
 .resourceGen {
