@@ -21,9 +21,9 @@ fetch("stats.json")
 
 //when bar is pressed, it will go up and generate a resource of type, if we have requirements in inventory
 function runBar(type, reqirements) {
-    for (thing of reqirements) {
-        if (stats.inventory[thing] < 1) {
-            alert(`You need a ${thing} first`)
+    for ([thing, level] of Object.entries(reqirements)) {
+        if (stats.inventory[thing] < level) {
+            alert(`You need a ${thing} in level ${level} first`)
             return
         }
     }
