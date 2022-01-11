@@ -8,7 +8,7 @@
             {"wood":4000,"stone":40, "iron":4}
         ],
         "modifier": [
-            {"speed":{"wood":0}},
+            {"unlock":"wood"},
             {"speed":{"wood":-3}},
             {"speed":{"wood":-2}},
             {"speed":{"wood":-2}},
@@ -24,9 +24,9 @@
             {"wood":2000,"stone":500, "iron":5}
         ],
         "modifier": [
-            {"speed":{"stone":0}},
+            {"unlock":"stone"},
             {"speed":{"stone":-40}},
-            {"speed":{"stone":-20}},
+            {"speed":{"stone":-20}, "unlock":"iron"},
             {"speed":{"stone":-10, "iron":-100}},
             {"speed":{"stone":-10, "iron":-100}}
         ]

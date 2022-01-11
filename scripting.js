@@ -92,7 +92,9 @@ function craft(item) {
     //apply modifiers from crafted item
     for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
         for ([element, value] of Object.entries(modified)) {
-            stats[atribute][element] += value
+            if (atribute != "unlock") {
+                stats[atribute][element] += value;
+            }
         }
     }
 
