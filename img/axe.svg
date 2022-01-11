@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="120">
+
+    <line class="handle" x1="10" y1="150" x2="60" y2="30" 
+    stroke="#502714" stroke-width="4" />
+    <path class="head" d="
+    M 61 30 Q 100 60 49 60
+    " />
+</svg>
