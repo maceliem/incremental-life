@@ -21,10 +21,12 @@ fetch("stats.json")
 
 //when bar is pressed, it will go up and generate a resource of type, if we have requirements in inventory
 function runBar(type, reqirements) {
-    for ([thing, level] of Object.entries(reqirements)) {
-        if (stats.inventory[thing] < level) {
-            alert(`You need a ${thing} in level ${level} first`)
-            return
+    for (reqirement of reqirements) {
+        for ([thing, level] of Object.entries(reqirement)) {
+            if (stats.inventory[thing] < level) {
+                alert(`You need a ${thing} in level ${level} first`)
+                return
+            }
         }
     }
     var progress = document.getElementById(`${type}Bar`)
