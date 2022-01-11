@@ -3,24 +3,32 @@
         "costs": [
             {"wood":0},
             {"wood":10},
-            {"wood":20,"stone":5}
+            {"wood":20,"stone":5},
+            {"wood":500,"stone":20},
+            {"wood":4000,"stone":40, "iron":4}
         ],
         "modifier": [
             {"speed":{"wood":0}},
+            {"speed":{"wood":-3}},
             {"speed":{"wood":-2}},
-            {"speed":{"wood":-2}}
+            {"speed":{"wood":-2}},
+            {"speed":{"wood":-1}}
         ]
     },
     "pickaxe": {
         "costs": [
             {"wood":20},
             {"wood":50,"stone":20},
-            {"wood":200,"stone":50}
+            {"wood":200,"stone":50},
+            {"wood":700,"stone":100, "iron":1},
+            {"wood":2000,"stone":500, "iron":5}
         ],
         "modifier": [
             {"speed":{"stone":0}},
-            {"speed":{"stone":-10}},
-            {"speed":{"stone":-10}}
+            {"speed":{"stone":-40}},
+            {"speed":{"stone":-20}},
+            {"speed":{"stone":-10, "iron":-100}},
+            {"speed":{"stone":-10, "iron":-100}}
         ]
     }
 }

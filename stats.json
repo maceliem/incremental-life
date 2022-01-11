@@ -1,11 +1,13 @@
 {
     "resources": {
         "wood": 0,
-        "stone": 0
+        "stone": 0,
+        "iron": 0
     },
     "speed": {
         "wood": 10,
-        "stone": 100
+        "stone": 100,
+        "iron": 1000
     },
     "config": {
         "color": "Blue"
