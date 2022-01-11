@@ -48,10 +48,6 @@ div.main {
     display: none;
 }
 
-#crafting {
-    display: block;
-}
-
 h1 {
     font-size: 3vw;
     margin: 20px;
@@ -110,6 +106,11 @@ button:active {
     height: auto;
 }
 
+#resource {
+    display: grid;
+    grid-template-rows: max-content;
+}
+
 .resourceGen {
     margin: 10px;
     width: auto;
@@ -155,7 +156,6 @@ button:active {
 #crafting {
     margin: 0;
     padding: 0;
-    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 }
 
