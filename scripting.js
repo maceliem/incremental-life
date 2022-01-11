@@ -9,10 +9,19 @@ fetch("stats.json")
         loadGame()
     });
 
+var items
+
+fetch("items.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        items = data
+    });
 
 function runBar(type, reqirements) {
     for (thing of reqirements) {
-        if(stats.inventory[thing] < 1){
+        if (stats.inventory[thing] < 1) {
             alert(`You need a ${thing} first`)
             return
         }
@@ -50,8 +59,44 @@ function loadGame() {
 }
 
 function switchMenu(id) {
-    for (page of document.getElementsByClassName("main")){
+    for (page of document.getElementsByClassName("main")) {
         page.style.display = "none"
     }
     document.getElementById(id).style.display = "block"
+}
+
+function craft(item) {
+    var curTier = stats.inventory[item]
+    var costs = items[item].costs[curTier]
+
+    for ([resource, value] of Object.entries(costs)) {
+        if (stats.resources[resource] < value) {
+            alert(`you don't have ${value} of ${resource}`)
+            return
+        }
+    }
+    for ([resource, value] of Object.entries(costs)) {
+        stats.resources[resource] -= value
+    }
+    stats.inventory[item]++
+    for ([atribute, modified] of Object.entries(items[item].modifier[curTier])){
+        for ([element, value] of Object.entries(modified)){
+            stats[atribute][element] += value
+        }
+    }
+
+    updateValues()
+    saveGame()
+}
+
+function resetStats(){
+    fetch("stats.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        stats = data
+        updateValues()
+        saveGame()
+    });
 }
