@@ -66,7 +66,7 @@ function updateValues() {
                                         for ([type2, value2] of Object.entries(value)) {
                                             var li = document.createElement("li")
                                             var time = "seconds"
-                                            if (value2 == 1) time = "second"
+                                            if (value2 == -1){time = "second"}
                                             li.innerHTML = `${type2} will complete in ${-1*value2} less ${time}`
                                             node.appendChild(li)
                                         }
