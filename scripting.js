@@ -104,7 +104,8 @@ function craft(item) {
 }
 
 function resetStats() {
-    fetch("stats.json")
+    if(confirm("Are you sure you want to do this?")){
+        fetch("stats.json")
         .then(response => {
             return response.json();
         })
@@ -113,4 +114,5 @@ function resetStats() {
             updateValues()
             saveGame()
         });
+    }
 }
