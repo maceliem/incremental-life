@@ -62,10 +62,12 @@ function updateValues() {
                                         var li = document.createElement("li")
                                         li.innerHTML = `${type} ${value}`
                                         node.appendChild(li)
-                                    } else {
+                                    } else if (type == "speed") {
                                         for ([type2, value2] of Object.entries(value)) {
                                             var li = document.createElement("li")
-                                            li.innerHTML = `${type} of ${type2} will be ${value2}`
+                                            var time = "seconds"
+                                            if (value2 == 1) time = "second"
+                                            li.innerHTML = `${type2} will complete in ${-1*value2} less ${time}`
                                             node.appendChild(li)
                                         }
                                     }
