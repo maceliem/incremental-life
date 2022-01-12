@@ -1,3 +1,4 @@
+var css = document.styleSheets[0]
 var colors
 
 fetch("colors.json")
