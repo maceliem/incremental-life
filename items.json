@@ -9,10 +9,10 @@
         ],
         "modifier": [
             {"unlock":"wood"},
-            {"speed":{"wood":-3}},
-            {"speed":{"wood":-2}},
-            {"speed":{"wood":-2}},
-            {"speed":{"wood":-1}}
+            {"speed":{"wood":-0.3}},
+            {"speed":{"wood":-0.2}},
+            {"speed":{"wood":-0.2}},
+            {"speed":{"wood":-0.1}}
         ]
     },
     "pickaxe": {
@@ -25,10 +25,10 @@
         ],
         "modifier": [
             {"unlock":"stone"},
-            {"speed":{"stone":-40}},
-            {"speed":{"stone":-20}, "unlock":"iron"},
-            {"speed":{"stone":-10, "iron":-100}},
-            {"speed":{"stone":-10, "iron":-100}}
+            {"speed":{"stone":-4}},
+            {"speed":{"stone":-2}, "unlock":"iron"},
+            {"speed":{"stone":-1, "iron":-10}},
+            {"speed":{"stone":-1, "iron":-10}}
         ]
     }
 }

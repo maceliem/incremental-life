@@ -33,7 +33,7 @@ function runBar(type, reqirements) {
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / stats.speed[type]) / 10;
+            progress.value += (100 / (stats.speed[type]*10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {

@@ -5,9 +5,9 @@
         "iron": 0
     },
     "speed": {
-        "wood": 10,
-        "stone": 100,
-        "iron": 1000
+        "wood": 1,
+        "stone": 10,
+        "iron": 100
     },
     "config": {
         "color": "Blue"
