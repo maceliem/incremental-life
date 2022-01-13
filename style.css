@@ -213,8 +213,13 @@ button:active {
     padding-left: 25%;
 }
 
+.craftElement>div{
+    display: flex;
+    justify-content: space-around;
+}
+
 .craftElement progress {
-    width: 90%;
+    width: 70%;
     margin-left: 5%;
     visibility: hidden;
     opacity: 0;
@@ -222,6 +227,19 @@ button:active {
 }
 
 .craftElement:hover progress {
+    visibility: visible;
+    opacity: 1;
+}
+
+.craftElement p {
+    width: auto;
+    margin: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+
+.craftElement:hover p {
     visibility: visible;
     opacity: 1;
 }
