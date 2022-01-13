@@ -213,6 +213,19 @@ button:active {
     padding-left: 25%;
 }
 
+.craftElement progress {
+    width: 90%;
+    margin-left: 5%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+
+.craftElement:hover progress {
+    visibility: visible;
+    opacity: 1;
+}
+
 .craftElement ul {
     padding-left: 20px;
     visibility: hidden;

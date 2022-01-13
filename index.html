@@ -26,19 +26,19 @@
             <div class="resourceGen">
                 <label>wood</label>
                 <progress data-active="false" id="woodBar" value="0" max="100"
-                    onclick="runBar('wood', [{'axe':1}])"></progress>
+                    onclick="runResourceBar('wood', [{'axe':1}])"></progress>
                 <p id="woodCounter">0</p>
             </div>
             <div class="resourceGen">
                 <label>stone</label>
                 <progress data-active="false" id="stoneBar" value="0" max="100"
-                    onclick="runBar('stone', [{'pickaxe':1}])"></progress>
+                    onclick="runResourceBar('stone', [{'pickaxe':1}])"></progress>
                 <p id="stoneCounter">0</p>
             </div>
             <div class="resourceGen">
                 <label>iron</label>
                 <progress data-active="false" id="ironBar" value="0" max="100"
-                    onclick="runBar('iron', [{'pickaxe':3}])"></progress>
+                    onclick="runResourceBar('iron', [{'pickaxe':3}])"></progress>
                 <p id="ironCounter">0</p>
             </div>
         </div>
@@ -48,6 +48,7 @@
             <div id="axe" class="craftElement" onclick="craft('axe')">
                 <h1>Axe</h1>
                 <img src="img/axe.svg" alt="test">
+                <progress data-active="false" id="axeBar" value="0" max="100"></progress>
                 <ul class="cost">
                 </ul>
                 <ul class="reward">
@@ -56,6 +57,7 @@
             <div id="pickaxe" class="craftElement" onclick="craft('pickaxe')">
                 <h1>Pickaxe</h1>
                 <img src="img/pickaxe.svg" alt="test">
+                <progress data-active="false" id="pickaxeBar" value="0" max="100"></progress>
                 <ul class="cost">
                 </ul>
                 <ul class="reward">

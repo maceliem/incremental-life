@@ -20,7 +20,7 @@ fetch("stats.json")
     });
 
 //when bar is pressed, it will go up and generate a resource of type, if we have requirements in inventory
-function runBar(type, reqirements) {
+function runResourceBar(type, reqirements) {
     for (reqirement of reqirements) {
         for ([thing, level] of Object.entries(reqirement)) {
             if (stats.inventory[thing] < level) {
@@ -88,16 +88,34 @@ function craft(item) {
     for ([resource, value] of Object.entries(costs)) {
         stats.resources[resource] -= value
     }
-    stats.inventory[item]++ //item level up
+    var progress = document.getElementById(item).getElementsByTagName("progress")[0]
+    
+    if (progress.dataset.active == "false") {
+        progress.dataset.active = true
+        var timer = setInterval(function () {//interval to animate progress going up
+            progress.value += (100 / (items[item].craftSpeed[curTier]*10)) / 10;
 
-    //apply modifiers from crafted item
-    for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
-        for ([element, value] of Object.entries(modified)) {
-            if (atribute != "unlock") {
-                stats[atribute][element] += value;
+            //when progress is done
+            if (progress.value == progress.max) {
+                progress.value = 0
+                progress.dataset.active = false
+                stats.inventory[item]++ //item level up
+            
+                //apply modifiers from crafted item
+                for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
+                    for ([element, value] of Object.entries(modified)) {
+                        if (atribute != "unlock") {
+                            stats[atribute][element] += value;
+                        }
+                    }
+                }
+                updateValues()
+                saveGame()
+                clearInterval(timer)
             }
-        }
+        }, 10)
     }
+    
 
     updateValues()
     saveGame()
