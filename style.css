@@ -70,12 +70,15 @@ h2 {
 button {
     width: 80%;
     height: 40px;
-    margin-top: 40px;
     margin-left: 10%;
 
     transition-duration: 0.4s;
     background-color: var(--element-color);
     border: 3px solid black;
+}
+
+button:not(:first-child){
+    margin-top: 40px;
 }
 
 button:hover {
@@ -90,17 +93,24 @@ button:active {
 .setting {
     margin: 10%;
     width: 80%;
-    height: 5%;
+    height: auto;
     border: none;
 }
 
 .setting .dropdown {
     display: none;
-    padding-bottom: 40px;
     width: 100%;
     height: 0;
     border: 2px solid black;
     border-radius: 5%;
+}
+
+.setting .dropdown button:first-child {
+    margin-top: 20px;
+}
+
+.setting .dropdown button:last-child {
+    margin-bottom: 20px;
 }
 
 .setting:hover .dropdown {
