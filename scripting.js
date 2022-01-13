@@ -40,8 +40,9 @@ function runResourceBar(type, reqirements) {
                 progress.value = 0
                 progress.dataset.active = false
                 stats.resources[type]++
-                updateValues()
-                saveGame()
+                stats.experience.xp += stats.experience.gain[type] 
+                stats.skils[type]++
+                doOftens()
                 clearInterval(timer)
             }
         }, 10)
@@ -59,7 +60,7 @@ function loadGame() {
             stats[key][element] = data[key][element]
         }
     }
-    updateValues()
+    doOftens()
     changeColor(stats.config.color)
 }
 
@@ -109,16 +110,14 @@ function craft(item) {
                         }
                     }
                 }
-                updateValues()
-                saveGame()
+                stats.experience.xp += stats.experience.gain.crafting
+                stats.skils.crafting++
                 clearInterval(timer)
             }
         }, 10)
     }
     
-
-    updateValues()
-    saveGame()
+    doOftens()
 }
 
 function resetStats() {
@@ -132,5 +131,24 @@ function resetStats() {
             updateValues()
             saveGame()
         });
+    }
+}
+
+function doOftens(){
+    checkUnlocks()
+    updateValues()
+    saveGame()
+}
+
+function getLevel() {
+    return Math.floor(Math.sqrt(stats.experience.xp/500))
+}
+
+function checkUnlocks(){
+    if(!stats.unlocks.crafting){
+        if(stats.resources.wood >= 10){
+            stats.unlocks.crafting = true
+            document.getElementById("craftingButton").style.visibility = "visible"
+        }
     }
 }

@@ -15,5 +15,24 @@
     "inventory": {
         "axe": 1,
         "pickaxe": 0
+    },
+    "experience": {
+        "xp": 0,
+        "gain": {
+            "wood": 1,
+            "stone": 5,
+            "iron": 100,
+            "crafting": 50
+        }
+    },
+    "skils": {
+        "wood": 0,
+        "stone": 0,
+        "iron": 0,
+        "crafting": 0
+    },
+    "unlocks": {
+        "crafting": false,
+        "levels": false
     }
 }
