@@ -1,0 +1,40 @@
+{
+    "wood": {
+        "lumberJack": {
+            "cost": 1,
+            "max": 1,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "value",
+                    "element": "wood",
+                    "change": 1,
+                    "type": "+"
+                },
+                {
+                    "attribute": "speed",
+                    "element": "wood",
+                    "change": 2,
+                    "type": "*"
+                }
+            ],
+            "text":"increase base wood reward by 1 but also increase base time by 2x"
+        },
+        "improoved wood": {
+            "cost": 5,
+            "max":5,
+            "requirements": [
+                "lumberJack"
+            ],
+            "effects": [
+                {
+                    "attribute": "speed",
+                    "element": "wood",
+                    "change": -0.05,
+                    "type": "*"
+                }
+            ],
+            "text": "Reduce wood time by 5%"
+        }
+    }
+}
