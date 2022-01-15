@@ -35,13 +35,14 @@ function updateValues() {
 
     //update crafting costs
     for (child of document.getElementsByClassName("craftElement")) {
+        var tool = child.id
+        var tier = stats.inventory[tool]
+        child.getElementsByTagName("h1")[0].innerHTML = `${child.id} - ${tier+1}`
         for (node of child.getElementsByTagName("UL")) {
             while (node.firstChild) { //remove old list elements
                 node.removeChild(node.lastChild)
             }
-            var tool = child.id
-            var tier = stats.inventory[tool]
-
+            
 
             //add new list elements
             if (node.classList.contains("cost")) {
