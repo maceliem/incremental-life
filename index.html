@@ -73,7 +73,7 @@
         </div>
 
         <div class="main" id="skills" data-type="block">
-            <div id="skillsOverview">
+            <div id="skillsOverview" data-active="true" data-type="grid" name="skills">
                 <h1>Skills</h1>
                 <div class="skillProgress">
                     <label>wood</label>
@@ -95,6 +95,14 @@
                     <progress name="crafting" value="0" max="100"></progress>
                     <p>0</p>
                 </div>
+            </div>
+            <div class="skillRoom" name="wood" data-active="false" data-type="block">
+                
+            </div>
+            <div id="skillSelect">
+                <button onclick="skillMenuSwap(-1)">left</button>
+                <p>skills</p>
+                <button onclick="skillMenuSwap(1)">right</button>
             </div>
         </div>
 

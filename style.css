@@ -25,7 +25,7 @@ body {
     height: 100vh;
 }
 
-.menu> div {
+.menu>div {
     background-color: var(--main-color);
     width: 16%;
     height: 90%;
@@ -33,12 +33,12 @@ body {
 
 }
 
-.menu> div:first-child {
+.menu>div:first-child {
     border-top-right-radius: 6%;
     border-bottom-right-radius: 6%;
 }
 
-.menu> div:last-child {
+.menu>div:last-child {
     border-top-left-radius: 6%;
     border-bottom-left-radius: 6%;
 }
@@ -77,7 +77,7 @@ button {
     border: 3px solid black;
 }
 
-button:not(:first-child){
+button:not(:first-child) {
     margin-top: 40px;
 }
 
@@ -131,7 +131,7 @@ button:active {
 }
 
 /*resource page stuff*/
-#resource {
+#skills {
     display: block;
 }
 
@@ -208,7 +208,7 @@ button:active {
     grid-row: span 2;
     max-height: 500px;
     transition: max-height 1s;
-    
+
 }
 
 .craftElement h1 {
@@ -216,7 +216,7 @@ button:active {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: rgb(0,0,0,0);
+    background-color: rgb(0, 0, 0, 0);
     border: none;
 }
 
@@ -225,7 +225,7 @@ button:active {
     padding-left: 25%;
 }
 
-.craftElement>div{
+.craftElement>div {
     display: flex;
     justify-content: space-around;
 }
@@ -310,5 +310,25 @@ button:active {
 
 .skillProgress p {
     font-size: 20px;
+    width: auto;
+}
+
+.skillRoom {
+    display: none;
+    height: 90%;
+}
+
+#skillSelect {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#skillSelect button {
+    width: 50px;
+    margin:0;
+}
+
+#skillSelect p {
     width: auto;
 }

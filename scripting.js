@@ -189,6 +189,26 @@ function checkSkillUp(skillName) {
     }
 }
 
-function calcSpeed(element){
+function calcSpeed(element) {
     return element.base + element.items
+}
+
+function skillMenuSwap(dir) {
+    var rooms = document.getElementById("skills").children
+    for (i in rooms) {
+        if (rooms[i].dataset.active == "true") {
+            rooms[i].style.display = "none"
+            rooms[i].dataset.active = "false"
+            var room
+            if (dir == -1 && i == 0) {
+                room = rooms[rooms.length - 2]
+            } else {
+                room = rooms[(parseInt(i) + dir) % (rooms.length - 1)] 
+            }
+            document.getElementById("skillSelect").getElementsByTagName("p")[0].innerHTML = room.getAttribute("name")
+            room.style.display = room.dataset.type
+            room.dataset.active = "true"
+            return
+        }
+    }
 }
