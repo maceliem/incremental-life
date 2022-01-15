@@ -62,6 +62,7 @@ function loadGame() {
     }
     doOftens()
     changeColor(stats.config.color)
+    unlockUnlocked()
 }
 
 //switch main thing to the one with id
@@ -150,5 +151,11 @@ function checkUnlocks(){
             stats.unlocks.crafting = true
             document.getElementById("craftingButton").style.visibility = "visible"
         }
+    }
+}
+
+function unlockUnlocked(){
+    if(stats.unlocks.crafting){
+        document.getElementById("craftingButton").style.visibility = "visible"
     }
 }
