@@ -94,6 +94,10 @@ button:active {
     visibility: hidden;
 }
 
+#skilsButton {
+    visibility: hidden;
+}
+
 /*right bar stuff*/
 .setting {
     margin: 10%;

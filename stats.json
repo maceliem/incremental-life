@@ -33,6 +33,7 @@
     },
     "unlocks": {
         "crafting": false,
-        "levels": false
+        "levels": false,
+        "skils": false
     }
 }

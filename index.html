@@ -19,6 +19,7 @@
             <h1>Menu</h1>
             <button id="resourceButton" onclick="switchMenu('resource')">resources</button>
             <button id="craftingButton" onclick="switchMenu('crafting')">crafting</button>
+            <button id="skilsButton" onclick="switchMenu('skils')">skils</button>
         </div>
 
         <!--resourceGen page-->
@@ -71,6 +72,31 @@
             </div>
         </div>
 
+        <div class="main" id="skils" data-type="block">
+            <div id="skilsOverview">
+                <div class="skilProgress">
+                    <label>wood</label>
+                    <progress name="wood" value="0" max="100"></progress>
+                    <p>0</p>
+                </div>
+                <div class="skilProgress">
+                    <label>stone</label>
+                    <progress name="stone" value="0" max="100"></progress>
+                    <p>0</p>
+                </div>
+                <div class="skilProgress">
+                    <label>iron</label>
+                    <progress name="iron" value="0" max="100"></progress>
+                    <p>0</p>
+                </div>
+                <div class="skilProgress">
+                    <label>crafting</label>
+                    <progress name="crafting" value="0" max="100"></progress>
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+
         <!--left bar-->
         <div>
             <h1>Settings</h1>
@@ -83,7 +109,7 @@
                 </div>
             </div>
             <div class="setting">
-                <button onclick="resetStats()" >Reset game</button>
+                <button onclick="resetStats()">Reset game</button>
             </div>
         </div>
     </div>

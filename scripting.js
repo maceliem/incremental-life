@@ -152,10 +152,21 @@ function checkUnlocks(){
             document.getElementById("craftingButton").style.visibility = "visible"
         }
     }
+    if(!stats.unlocks.skils){
+        for([skill, xp] of Object.entries(stats.skils)){
+            if (xp >= 100){
+                stats.unlocks.skils = true
+                document.getElementById("skilsButton").style.visibility = "visible"
+            }
+        }
+    }
 }
 
 function unlockUnlocked(){
     if(stats.unlocks.crafting){
         document.getElementById("craftingButton").style.visibility = "visible"
+    }
+    if(stats.unlocks.skils){
+        document.getElementById("skilsButton").style.visibility = "visible"
     }
 }

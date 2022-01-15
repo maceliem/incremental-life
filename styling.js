@@ -72,4 +72,9 @@ function updateValues() {
         }
         child.getElementsByTagName("p")[0].innerHTML = `${items[child.id].craftSpeed[stats.inventory[child.id]]}s`
     }
+
+    for (skil of document.getElementsByClassName("skilProgress")){
+        var progress = skil.getElementsByTagName("progress")[0]
+        progress.value = stats.skils[progress.getAttribute("name")]
+    }
 }
