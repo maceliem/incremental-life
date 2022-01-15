@@ -1,6 +1,6 @@
 var items
 
-fetch("items.json")
+fetch("data/items.json")
     .then(response => {
         return response.json();
     })
@@ -33,13 +33,13 @@ function runResourceBar(type, reqirements) {
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / (calcSpeed(stats.speed[type]) * 10)) / 10;
+            progress.value += (100 / (calcEffects(stats.speed[type]) * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
                 progress.value = 0
                 progress.dataset.active = false
-                stats.resources[type]++
+                stats.resources[type] += calcEffects(stats.value[type])
                 stats.experience.xp += stats.experience.gain[type]
                 stats.skills.xp[type]++
                 doOftens()
@@ -61,6 +61,7 @@ function loadGame() {
             stats[key][element] = data[key][element]
         }
     }
+    generateskillTree()
     doOftens()
     changeColor(stats.config.color)
     unlockUnlocked()
@@ -156,7 +157,7 @@ function checkUnlocks() {
     }
     if (!stats.unlocks.skills) {
         for ([skill, xp] of Object.entries(stats.skills.xp)) {
-            if (xp >= 100) {
+            if (xp >= 50) {
                 stats.unlocks.skills = true
                 document.getElementById("skillsButton").style.visibility = "visible"
             }
@@ -174,7 +175,7 @@ function unlockUnlocked() {
 }
 
 function SkillTotalXpToLevel(level) {
-    return Math.floor(Math.pow(level, 1.5) * 100)
+    return Math.floor(Math.pow(level, 1.2) * 50)
 }
 
 function SkillXpToNextLevel(level) {
@@ -186,12 +187,16 @@ function checkSkillUp(skillName) {
     if (stats.skills.xp[skillName] >= required) {
         stats.skills.level[skillName]++
         stats.skills.xp[skillName] -= required
+        stats.skills.points[skillName]++
+
     }
 }
 
-function calcSpeed(element) {
-    return element.base + element.items
+function calcEffects(element) {
+    return (element.base + element.items + element["skills+"]) * element["skills*"]
 }
+
+
 
 function skillMenuSwap(dir) {
     var rooms = document.getElementById("skills").children
@@ -203,12 +208,22 @@ function skillMenuSwap(dir) {
             if (dir == -1 && i == 0) {
                 room = rooms[rooms.length - 2]
             } else {
-                room = rooms[(parseInt(i) + dir) % (rooms.length - 1)] 
+                room = rooms[(parseInt(i) + dir) % (rooms.length - 1)]
             }
-            document.getElementById("skillSelect").getElementsByTagName("p")[0].innerHTML = room.getAttribute("name")
+            var menuTitle = document.getElementById("skillSelect").getElementsByTagName("p")[0]
+            if (room.getAttribute("name") == "skills") menuTitle.innerHTML = `${room.getAttribute("name")}`
+            else menuTitle.innerHTML = `${room.getAttribute("name")} - points available: ${stats.skills.points[room.getAttribute("name")]}`
             room.style.display = room.dataset.type
             room.dataset.active = "true"
             return
         }
     }
+}
+
+function applyEffect(effect, category) {
+    stats[effect.attribute][effect.element][category + effect.type] += effect.change
+}
+
+function checkSkillDisable() {
+
 }

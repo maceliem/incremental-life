@@ -1,11 +1,19 @@
 var css = document.styleSheets[0]
 var colors
 
-fetch("colors.json")
+fetch("data/colors.json")
     .then(response => {
         return response.json();
     })
     .then(data => colors = data);
+
+var skillTree
+
+fetch("data/skillTree.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => skillTree = data);
 
 
 //change colorscheme of everything to color
@@ -85,5 +93,74 @@ function updateValues() {
         progress.value = stats.skills.xp[progress.getAttribute("name")]
         progress.max = SkillXpToNextLevel(stats.skills.level[progress.getAttribute("name")])
         skill.getElementsByTagName("p")[0].innerHTML = stats.skills.level[progress.getAttribute("name")]
+    }
+
+    for (let [type, skillList] of Object.entries(skillTree)) {
+        let room = Array.from(document.getElementsByClassName("skillRoom")).find(element => {
+            return element.getAttribute("name") == type
+        })
+        for (let [skill, attributes] of Object.entries(skillList)) {
+            let button = room.getElementsByClassName(skill + "button")[0]
+            if (stats.skills.upgrades[skill] == attributes.max) button.disabled = true
+            let cur
+            if (stats.skills.upgrades[skill] == undefined) cur = 0
+            else cur = stats.skills.upgrades[skill]
+            var text = button.getElementsByTagName("span")[0]
+            text.innerHTML = `<b>${skill}</b> <br> ${attributes.text} <br> costs: ${attributes.cost} <br> ${cur}/${attributes.max}`
+            if (attributes.requirements != null) {
+                var i = false
+                for (requirement of attributes.requirements) {
+                    if (stats.skills.upgrades[requirement] == undefined) {
+                        i = true
+                        text.innerHTML += `<br> need: ${requirement}`
+                    }
+                }
+                button.disabled = i
+            }
+        }
+    }
+}
+
+function generateskillTree() {
+    for (let [type, skillList] of Object.entries(skillTree)) {
+        let room = Array.from(document.getElementsByClassName("skillRoom")).find(element => {
+            return element.getAttribute("name") == type
+        })
+        for (let [skill, attributes] of Object.entries(skillList)) {
+            let button = document.createElement("button")
+            button.classList.add(skill + "button")
+            button.innerHTML = `${skill}`
+            button.addEventListener('click', function () {
+                if (stats.skills.points[type] >= attributes.cost) {
+                    stats.skills.points[type] -= attributes.cost
+                    for (effect of attributes.effects) { applyEffect(effect, "skills") }
+                    if (stats.skills.upgrades[skill] == undefined) stats.skills.upgrades[skill] = 1
+                    else stats.skills.upgrades[skill]++
+                    if (stats.skills.upgrades[skill] == attributes.max) button.disabled = true
+                    updateValues()
+                    document.getElementById("skillSelect").getElementsByTagName("p")[0].innerHTML = `${type} - points available: ${stats.skills.points[type]}`
+                    saveGame()
+                }
+                else {
+                    alert(`You need to have at least ${attributes.cost} skill points in ${type} first`)
+                }
+            }, false)
+            let text = document.createElement("span")
+            text.classList.add("skillTooltip")
+            let cur
+            if (stats.skills.upgrades[skill] == undefined) cur = 0
+            else cur = stats.skills.upgrades[skill]
+            text.innerHTML = `<b>${skill}</b> <br> ${attributes.text} <br> costs: ${attributes.cost} <br> ${cur}/${attributes.max}`
+            if (attributes.requirements != null) {
+                for (requirement of attributes.requirements) {
+                    if (stats.skills.upgrades[requirement] == undefined) {
+                        button.disabled = true
+                        text.innerHTML += `<br> need: ${requirement}`
+                    }
+                }
+            }
+            button.appendChild(text)
+            room.appendChild(button)
+        }
     }
 }

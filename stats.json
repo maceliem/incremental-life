@@ -7,15 +7,41 @@
     "speed": {
         "wood": {
             "base": 1.0,
-            "items": 0
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
         },
         "stone": {
             "base": 10.0,
-            "items": 0
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
         },
         "iron": {
             "base": 100.0,
-            "items": 0
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        }
+    },
+    "value": {
+        "wood": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "stone": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "iron": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
         }
     },
     "config": {
@@ -46,7 +72,14 @@
             "stone": 1,
             "iron": 1,
             "crafting": 1
-        }
+        },
+        "points": {
+            "wood": 0,
+            "stone": 0,
+            "iron": 0,
+            "crafting": 0
+        },
+        "upgrades": {}
     },
     "unlocks": {
         "crafting": false,

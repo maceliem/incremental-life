@@ -1,4 +1,7 @@
 {
+    "all": {
+
+    },
     "wood": {
         "lumberJack": {
             "cost": 1,
@@ -20,7 +23,7 @@
             ],
             "text":"increase base wood reward by 1 but also increase base time by 2x"
         },
-        "improoved wood": {
+        "improoved-wood": {
             "cost": 5,
             "max":5,
             "requirements": [
