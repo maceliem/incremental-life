@@ -33,14 +33,14 @@ function runResourceBar(type, reqirements) {
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / (stats.speed[type]*10)) / 10;
+            progress.value += (100 / (stats.speed[type] * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
                 progress.value = 0
                 progress.dataset.active = false
                 stats.resources[type]++
-                stats.experience.xp += stats.experience.gain[type] 
+                stats.experience.xp += stats.experience.gain[type]
                 stats.skills.xp[type]++
                 doOftens()
                 checkSkillUp(type)
@@ -92,18 +92,18 @@ function craft(item) {
         stats.resources[resource] -= value
     }
     var progress = document.getElementById(item).getElementsByTagName("progress")[0]
-    
+
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / (items[item].craftSpeed[curTier]*10)) / 10;
+            progress.value += (100 / (items[item].craftSpeed[curTier] * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
                 progress.value = 0
                 progress.dataset.active = false
                 stats.inventory[item]++ //item level up
-            
+
                 //apply modifiers from crafted item
                 for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
                     for ([element, value] of Object.entries(modified)) {
@@ -115,48 +115,48 @@ function craft(item) {
                 stats.experience.xp += stats.experience.gain.crafting
                 stats.skills.xp.crafting++
                 checkSkillUp("crafting")
+                doOftens()
                 clearInterval(timer)
             }
         }, 10)
     }
-    
-    doOftens()
+
 }
 
 function resetStats() {
-    if(confirm("Are you sure you want to do this?")){
+    if (confirm("Are you sure you want to do this?")) {
         fetch("stats.json")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            stats = data
-            updateValues()
-            saveGame()
-        });
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                stats = data
+                updateValues()
+                saveGame()
+            });
     }
 }
 
-function doOftens(){
+function doOftens() {
     checkUnlocks()
     updateValues()
     saveGame()
 }
 
 function getLevel() {
-    return Math.floor(Math.sqrt(stats.experience.xp/500))
+    return Math.floor(Math.sqrt(stats.experience.xp / 500))
 }
 
-function checkUnlocks(){
-    if(!stats.unlocks.crafting){
-        if(stats.resources.wood >= 10){
+function checkUnlocks() {
+    if (!stats.unlocks.crafting) {
+        if (stats.resources.wood >= 10) {
             stats.unlocks.crafting = true
             document.getElementById("craftingButton").style.visibility = "visible"
         }
     }
-    if(!stats.unlocks.skills){
-        for([skill, xp] of Object.entries(stats.skills.xp)){
-            if (xp >= 100){
+    if (!stats.unlocks.skills) {
+        for ([skill, xp] of Object.entries(stats.skills.xp)) {
+            if (xp >= 100) {
                 stats.unlocks.skills = true
                 document.getElementById("skillsButton").style.visibility = "visible"
             }
@@ -164,26 +164,26 @@ function checkUnlocks(){
     }
 }
 
-function unlockUnlocked(){
-    if(stats.unlocks.crafting){
+function unlockUnlocked() {
+    if (stats.unlocks.crafting) {
         document.getElementById("craftingButton").style.visibility = "visible"
     }
-    if(stats.unlocks.skills){
+    if (stats.unlocks.skills) {
         document.getElementById("skillsButton").style.visibility = "visible"
     }
 }
 
-function SkillTotalXpToLevel(level){
-    return Math.floor(Math.pow(level, 1.5)*100)
+function SkillTotalXpToLevel(level) {
+    return Math.floor(Math.pow(level, 1.5) * 100)
 }
 
-function SkillXpToNextLevel(level){
-    return SkillTotalXpToLevel(level) - SkillTotalXpToLevel(level-1)
+function SkillXpToNextLevel(level) {
+    return SkillTotalXpToLevel(level) - SkillTotalXpToLevel(level - 1)
 }
 
 function checkSkillUp(skillName) {
     var required = SkillXpToNextLevel(stats.skills.level[skillName])
-    if(stats.skills.xp[skillName] >= required){
+    if (stats.skills.xp[skillName] >= required) {
         stats.skills.level[skillName]++
         stats.skills.xp[skillName] -= required
     }

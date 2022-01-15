@@ -37,44 +37,50 @@ function updateValues() {
     for (child of document.getElementsByClassName("craftElement")) {
         var tool = child.id
         var tier = stats.inventory[tool]
-        child.getElementsByTagName("h1")[0].innerHTML = `${child.id} - ${tier+1}`
-        for (node of child.getElementsByTagName("UL")) {
-            while (node.firstChild) { //remove old list elements
-                node.removeChild(node.lastChild)
-            }
-            
+        if (items[tool].costs.length == tier) {
+            child.style.display = "none"
+        }
+        else {
 
-            //add new list elements
-            if (node.classList.contains("cost")) {
-                var costs = items[tool].costs[tier]
-                for ([type, value] of Object.entries(costs)) {
-                    var li = document.createElement("li")
-                    li.innerHTML = `${type} ${value}`
-                    node.appendChild(li)
+            child.getElementsByTagName("h1")[0].innerHTML = `${child.id} - ${tier + 1}`
+            for (node of child.getElementsByTagName("UL")) {
+                while (node.firstChild) { //remove old list elements
+                    node.removeChild(node.lastChild)
                 }
-            } else if (node.classList.contains("reward")) {
-                var reward = items[tool].modifier[tier]
-                for ([type, value] of Object.entries(reward)) {
-                    if (type == "unlock") {
+
+
+                //add new list elements
+                if (node.classList.contains("cost")) {
+                    var costs = items[tool].costs[tier]
+                    for ([type, value] of Object.entries(costs)) {
                         var li = document.createElement("li")
                         li.innerHTML = `${type} ${value}`
                         node.appendChild(li)
-                    } else if (type == "speed") {
-                        for ([type2, value2] of Object.entries(value)) {
+                    }
+                } else if (node.classList.contains("reward")) {
+                    var reward = items[tool].modifier[tier]
+                    for ([type, value] of Object.entries(reward)) {
+                        if (type == "unlock") {
                             var li = document.createElement("li")
-                            var time = "seconds"
-                            if (value2 == -1) { time = "second" }
-                            li.innerHTML = `${type2} will complete in ${-1 * value2} less ${time}`
+                            li.innerHTML = `${type} ${value}`
                             node.appendChild(li)
+                        } else if (type == "speed") {
+                            for ([type2, value2] of Object.entries(value)) {
+                                var li = document.createElement("li")
+                                var time = "seconds"
+                                if (value2 == -1) { time = "second" }
+                                li.innerHTML = `${type2} will complete in ${-1 * value2} less ${time}`
+                                node.appendChild(li)
+                            }
                         }
                     }
                 }
             }
+            child.getElementsByTagName("p")[0].innerHTML = `${items[child.id].craftSpeed[stats.inventory[child.id]]}s`
         }
-        child.getElementsByTagName("p")[0].innerHTML = `${items[child.id].craftSpeed[stats.inventory[child.id]]}s`
     }
 
-    for (skill of document.getElementsByClassName("skillProgress")){
+    for (skill of document.getElementsByClassName("skillProgress")) {
         var progress = skill.getElementsByTagName("progress")[0]
         progress.value = stats.skills.xp[progress.getAttribute("name")]
         progress.max = SkillXpToNextLevel(stats.skills.level[progress.getAttribute("name")])
