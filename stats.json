@@ -5,9 +5,18 @@
         "iron": 0
     },
     "speed": {
-        "wood": 1,
-        "stone": 10,
-        "iron": 100
+        "wood": {
+            "base": 1.0,
+            "items": 0
+        },
+        "stone": {
+            "base": 10.0,
+            "items": 0
+        },
+        "iron": {
+            "base": 100.0,
+            "items": 0
+        }
     },
     "config": {
         "color": "Blue"
@@ -32,7 +41,7 @@
             "iron": 0,
             "crafting": 0
         },
-        "level":{
+        "level": {
             "wood": 1,
             "stone": 1,
             "iron": 1,

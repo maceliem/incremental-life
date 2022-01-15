@@ -33,7 +33,7 @@ function runResourceBar(type, reqirements) {
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / (stats.speed[type] * 10)) / 10;
+            progress.value += (100 / (calcSpeed(stats.speed[type]) * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
@@ -108,7 +108,7 @@ function craft(item) {
                 for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
                     for ([element, value] of Object.entries(modified)) {
                         if (atribute != "unlock") {
-                            stats[atribute][element] += value;
+                            stats[atribute][element].items += value;
                         }
                     }
                 }
@@ -187,4 +187,8 @@ function checkSkillUp(skillName) {
         stats.skills.level[skillName]++
         stats.skills.xp[skillName] -= required
     }
+}
+
+function calcSpeed(element){
+    return element.base + element.items
 }
