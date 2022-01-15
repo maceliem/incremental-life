@@ -52,6 +52,7 @@ div.main {
 h1 {
     font-size: 3vw;
     margin: 20px;
+    height: ;
     text-align: center;
     background-color: var(--element-color);
     border: 2px solid black;
@@ -266,4 +267,49 @@ button:active {
 .craftElement:hover ul {
     opacity: 1;
     visibility: visible;
+}
+
+/*Skill page stuff*/
+
+#skillsOverview {
+    display: grid;
+    height: 90%;
+    grid-template-rows: 14% auto;
+}
+
+#skillsOverview h1 {
+    font-size: 200%;
+}
+
+.skillProgress {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 30% 40% 30%;
+    align-items: center;
+    text-align: center;
+}
+
+.skillProgress label {
+    font-size: 20px;
+}
+
+.skillProgress progress {
+    width: 100%;
+    height: 30%;
+    background-color: var(--bar-color);
+    border: solid 2px black;
+}
+
+.skillProgress progress::-webkit-progress-bar {
+    background-color: rgb(139, 139, 139);
+}
+
+.skillProgress progress::-webkit-progress-value {
+    background-color: var(--bar-color);
+    border-right: 2px solid black;
+}
+
+.skillProgress p {
+    font-size: 20px;
+    width: auto;
 }
