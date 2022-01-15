@@ -25,15 +25,23 @@
             "crafting": 50
         }
     },
-    "skils": {
-        "wood": 0,
-        "stone": 0,
-        "iron": 0,
-        "crafting": 0
+    "skills": {
+        "xp": {
+            "wood": 0,
+            "stone": 0,
+            "iron": 0,
+            "crafting": 0
+        },
+        "level":{
+            "wood": 1,
+            "stone": 1,
+            "iron": 1,
+            "crafting": 1
+        }
     },
     "unlocks": {
         "crafting": false,
         "levels": false,
-        "skils": false
+        "skills": false
     }
 }

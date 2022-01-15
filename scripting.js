@@ -41,8 +41,9 @@ function runResourceBar(type, reqirements) {
                 progress.dataset.active = false
                 stats.resources[type]++
                 stats.experience.xp += stats.experience.gain[type] 
-                stats.skils[type]++
+                stats.skills.xp[type]++
                 doOftens()
+                checkSkillUp(type)
                 clearInterval(timer)
             }
         }, 10)
@@ -112,7 +113,8 @@ function craft(item) {
                     }
                 }
                 stats.experience.xp += stats.experience.gain.crafting
-                stats.skils.crafting++
+                stats.skills.xp.crafting++
+                checkSkillUp("crafting")
                 clearInterval(timer)
             }
         }, 10)
@@ -152,11 +154,11 @@ function checkUnlocks(){
             document.getElementById("craftingButton").style.visibility = "visible"
         }
     }
-    if(!stats.unlocks.skils){
-        for([skill, xp] of Object.entries(stats.skils)){
+    if(!stats.unlocks.skills){
+        for([skill, xp] of Object.entries(stats.skills.xp)){
             if (xp >= 100){
-                stats.unlocks.skils = true
-                document.getElementById("skilsButton").style.visibility = "visible"
+                stats.unlocks.skills = true
+                document.getElementById("skillsButton").style.visibility = "visible"
             }
         }
     }
@@ -166,7 +168,23 @@ function unlockUnlocked(){
     if(stats.unlocks.crafting){
         document.getElementById("craftingButton").style.visibility = "visible"
     }
-    if(stats.unlocks.skils){
-        document.getElementById("skilsButton").style.visibility = "visible"
+    if(stats.unlocks.skills){
+        document.getElementById("skillsButton").style.visibility = "visible"
+    }
+}
+
+function SkillTotalXpToLevel(level){
+    return Math.floor(Math.pow(level, 1.5)*100)
+}
+
+function SkillXpToNextLevel(level){
+    return SkillTotalXpToLevel(level) - SkillTotalXpToLevel(level-1)
+}
+
+function checkSkillUp(skillName) {
+    var required = SkillXpToNextLevel(stats.skills.level[skillName])
+    if(stats.skills.xp[skillName] >= required){
+        stats.skills.level[skillName]++
+        stats.skills.xp[skillName] -= required
     }
 }

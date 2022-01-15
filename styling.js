@@ -73,8 +73,10 @@ function updateValues() {
         child.getElementsByTagName("p")[0].innerHTML = `${items[child.id].craftSpeed[stats.inventory[child.id]]}s`
     }
 
-    for (skil of document.getElementsByClassName("skilProgress")){
-        var progress = skil.getElementsByTagName("progress")[0]
-        progress.value = stats.skils[progress.getAttribute("name")]
+    for (skill of document.getElementsByClassName("skillProgress")){
+        var progress = skill.getElementsByTagName("progress")[0]
+        progress.value = stats.skills.xp[progress.getAttribute("name")]
+        progress.max = SkillXpToNextLevel(stats.skills.level[progress.getAttribute("name")])
+        skill.getElementsByTagName("p")[0].innerHTML = stats.skills.level[progress.getAttribute("name")]
     }
 }
