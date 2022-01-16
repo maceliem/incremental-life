@@ -102,7 +102,8 @@
         }
     },
     "config": {
-        "color": "Blue"
+        "color": "Blue",
+        "numberFormat": "scientific"
     },
     "inventory": {
         "axe": 1,

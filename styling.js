@@ -38,7 +38,7 @@ function updateValues() {
     for (child of document.getElementsByClassName("resourceGen")) {
         var text = child.childNodes[5]
         var type = text.id.replace("Counter", "")
-        text.innerHTML = stats.resources[type]
+        text.innerHTML = displayNumber(stats.resources[type])
     }
 
     //update crafting costs
@@ -163,4 +163,26 @@ function generateskillTree() {
             room.appendChild(button)
         }
     }
+}
+
+function displayNumber(number) {
+    var num = number.toString()
+    console.log(num)
+    if (num.length < 7) { return num }
+
+    else if (stats.config.numberFormat == "scientific") {
+        return `${num.charAt(0)},${num.charAt(1) + num.charAt(2)}E+${num.length - 1}`
+    } else if (stats.config.numberFormat == "engineering") {
+        var dif = ((num.length - 1) % 3)
+        var end = (num.length - 1) - dif
+        if (dif == 0) { return `${num.charAt(0)},${num.charAt(1) + num.charAt(2)}E+${end}` }
+        if (dif == 1) { return `${num.charAt(0) + num.charAt(1)},${num.charAt(2)}E+${end}` }
+        if (dif == 2) { return `${num.charAt(0) + num.charAt(1) + num.charAt(2)}E+${end}` }
+
+    }
+}
+
+function changeConfig(config, next) {
+    stats.config[config] = next
+    updateValues()
 }
