@@ -188,8 +188,12 @@ function unlockUnlocked() {
             let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
                 return element.getAttribute("name") == type
             })
-
             resourceGen.style.display = "flex"
+
+            let skillProgress = Array.from(document.getElementsByClassName("skillProgress")).find(element => {
+                return element.getAttribute("name") == type
+            })
+            skillProgress.style.display = "grid"
         }
         for (item of ["torch"]) {
             document.getElementById(item).style.display = "block"

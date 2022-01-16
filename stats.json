@@ -6,7 +6,7 @@
         "coal": 0,
         "gold": 0,
         "copper": 0,
-        "tin":0
+        "tin": 0
     },
     "speed": {
         "wood": {
@@ -102,7 +102,7 @@
     "inventory": {
         "axe": 1,
         "pickaxe": 0,
-        "torch":0
+        "torch": 0
     },
     "experience": {
         "xp": 0,
@@ -118,19 +118,31 @@
             "wood": 0,
             "stone": 0,
             "iron": 0,
-            "crafting": 0
+            "crafting": 0,
+            "coal": 0,
+            "gold": 0,
+            "copper": 0,
+            "tin": 0
         },
         "level": {
             "wood": 1,
             "stone": 1,
             "iron": 1,
-            "crafting": 1
+            "crafting": 1,
+            "coal": 1,
+            "gold": 1,
+            "copper": 1,
+            "tin": 1
         },
         "points": {
             "wood": 0,
             "stone": 0,
             "iron": 0,
-            "crafting": 0
+            "crafting": 0,
+            "coal": 0,
+            "gold": 0,
+            "copper": 0,
+            "tin": 0
         },
         "upgrades": {}
     },
