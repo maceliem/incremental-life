@@ -112,7 +112,7 @@ function craft(item) {
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / (items[item].craftSpeed[curTier] * 10)) / 10;
+            progress.value += (100 / ( calcCraftSpeed(items[item].craftSpeed[curTier]) * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
@@ -223,7 +223,10 @@ function calcEffects(element) {
     return (element.base + element.items + element["skills+"]) * element["skills*"]
 }
 
-
+function calcCraftSpeed(baseTime){
+    var element = stats.speed.crafting
+    return (baseTime + element.items + element["skills+"]) * element["skills*"]
+}
 
 function skillMenuSwap(dir) {
     var rooms = document.getElementById("skills").children
@@ -253,16 +256,14 @@ function applyEffect(effect, category) {
             for (element of ["stone", "iron", "coal", "gold", "copper", "tin"]) {
                 stats[effect.attribute][element][category + effect.type] += effect.change
             }
-        } else { stats[effect.attribute][effect.element][category + effect.type] += effect.change }
+        } else { 
+            stats[effect.attribute][effect.element][category + effect.type] += effect.change 
+        }
     } else {
         if (effect.element == "ores") {
             stats.unlocks.ores = true
             unlockUnlocked()
         }
     }
-}
-
-function checkSkillDisable() {
-
 }
 

@@ -27,6 +27,11 @@
             "skills+": 0,
             "skills*": 1
         },
+        "crafting": {
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
         "coal": {
             "base": 30.0,
             "items": 0,

@@ -53,7 +53,36 @@
             "text": "increase base wood reward by an aditional 1"
         }
     },
-    "stone": {},
+    "stone": {
+        "rocking-around": {
+            "cost": 2,
+            "max": 5,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "speed",
+                    "element": "stone",
+                    "change": -0.05,
+                    "type": "*"
+                }
+            ],
+            "text": "increase speed of stone by 5%"
+        },
+        "mining-for-days": {
+            "cost": 2,
+            "max": 5,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "speed",
+                    "element": "mining",
+                    "change": -0.01,
+                    "type": "*"
+                }
+            ],
+            "text": "increase speed of all mining by 1%"
+        }
+    },
     "iron": {
         "miners-delight": {
             "cost": 1,
@@ -66,6 +95,22 @@
                 }
             ],
             "text": "unlock multiple new metals to mine"
+        }
+    },
+    "crafting": {
+        "impatient-crafter": {
+            "cost": 2,
+            "max": 1,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "speed",
+                    "element": "crafting",
+                    "change": -0.2,
+                    "type": "*"
+                }
+            ],
+            "text": "reduce crafting time by 20%"
         }
     }
 }
