@@ -191,6 +191,9 @@ function unlockUnlocked() {
 
             resourceGen.style.display = "flex"
         }
+        for (item of ["torch"]) {
+            document.getElementById(item).style.display = "block"
+        }
     }
 }
 
@@ -246,13 +249,7 @@ function applyEffect(effect, category) {
     } else {
         if (effect.element == "ores") {
             stats.unlocks.ores = true
-            for (type of ["coal", "gold", "copper", "tin"]) {
-                let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
-                    return element.getAttribute("name") == type
-                })
-
-                resourceGen.style.display = "flex"
-            }
+            unlockUnlocked()
         }
     }
 }

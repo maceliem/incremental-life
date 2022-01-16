@@ -44,5 +44,19 @@
             60.0,
             120.0
         ]
+    },
+    "torch": {
+        "costs":[
+            {"wood":100, "coal":50},
+            {"wood":200, "coal":200}
+        ],
+        "modifier":[
+            {"unlock":"copper"},
+            {"unlock":"tin"}
+        ],
+        "craftSpeed":[
+            30.0,
+            60.0
+        ]
     }
 }

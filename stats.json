@@ -101,7 +101,8 @@
     },
     "inventory": {
         "axe": 1,
-        "pickaxe": 0
+        "pickaxe": 0,
+        "torch":0
     },
     "experience": {
         "xp": 0,

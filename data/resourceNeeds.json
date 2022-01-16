@@ -15,9 +15,11 @@
         "pickaxe": 6
     },
     "copper":{
-        "pickaxe": 4
+        "pickaxe": 4,
+        "torch": 1
     },
     "tin":{
-        "pickaxe": 4
+        "pickaxe": 4,
+        "torch": 2
     }
 }
