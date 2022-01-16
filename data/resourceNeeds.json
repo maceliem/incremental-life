@@ -1,0 +1,23 @@
+{
+    "wood": {
+        "axe": 1
+    },
+    "stone":{
+        "pickaxe": 1
+    },
+    "iron":{
+        "pickaxe": 3
+    },
+    "coal":{
+        "pickaxe": 3
+    },
+    "gold":{
+        "pickaxe": 6
+    },
+    "copper":{
+        "pickaxe": 4
+    },
+    "tin":{
+        "pickaxe": 4
+    }
+}

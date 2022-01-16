@@ -24,23 +24,47 @@
 
         <!--resourceGen page-->
         <div class="main" id="resource" data-type="block">
-            <div class="resourceGen">
+            <div name="wood" class="resourceGen">
                 <label>wood</label>
                 <progress data-active="false" id="woodBar" value="0" max="100"
-                    onclick="runResourceBar('wood', [{'axe':1}])"></progress>
+                    onclick="runResourceBar('wood')"></progress>
                 <p id="woodCounter">0</p>
             </div>
-            <div class="resourceGen">
+            <div name="stone" class="resourceGen">
                 <label>stone</label>
                 <progress data-active="false" id="stoneBar" value="0" max="100"
-                    onclick="runResourceBar('stone', [{'pickaxe':1}])"></progress>
+                    onclick="runResourceBar('stone')"></progress>
                 <p id="stoneCounter">0</p>
             </div>
-            <div class="resourceGen">
+            <div name="iron" class="resourceGen">
                 <label>iron</label>
                 <progress data-active="false" id="ironBar" value="0" max="100"
-                    onclick="runResourceBar('iron', [{'pickaxe':3}])"></progress>
+                    onclick="runResourceBar('iron')"></progress>
                 <p id="ironCounter">0</p>
+            </div>
+            <div name="coal" class="resourceGen" style="display: none;">
+                <label>coal</label>
+                <progress data-active="false" id="coalBar" value="0" max="100"
+                    onclick="runResourceBar('coal')"></progress>
+                <p id="coalCounter">0</p>
+            </div>
+            <div name="gold" class="resourceGen" style="display: none;">
+                <label>gold</label>
+                <progress data-active="false" id="goldBar" value="0" max="100"
+                    onclick="runResourceBar('gold')"></progress>
+                <p id="goldCounter">0</p>
+            </div>
+            <div name="copper" class="resourceGen" style="display: none;">
+                <label>copper</label>
+                <progress data-active="false" id="copperBar" value="0" max="100"
+                    onclick="runResourceBar('copper')"></progress>
+                <p id="copperCounter">0</p>
+            </div>
+            <div name="tin" class="resourceGen" style="display: none;">
+                <label>tin</label>
+                <progress data-active="false" id="tinBar" value="0" max="100"
+                    onclick="runResourceBar('tin')"></progress>
+                <p id="tinCounter">0</p>
             </div>
         </div>
 
@@ -97,6 +121,10 @@
                 </div>
             </div>
             <div class="skillRoom" name="wood" data-active="false" data-type="flex">    
+            </div>
+            <div class="skillRoom" name="stone" data-active="false" data-type="flex">    
+            </div>
+            <div class="skillRoom" name="iron" data-active="false" data-type="flex">    
             </div>
             <div id="skillSelect">
                 <button onclick="skillMenuSwap(-1)">left</button>

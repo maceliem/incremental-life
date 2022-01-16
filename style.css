@@ -147,13 +147,10 @@ button:active {
 
 }
 
-.resourceGen label {
-    width: 10vw;
-}
 
 .resourceGen progress {
     height: 100%;
-    width: 25vw;
+    width: 40%;
     background-color: rgb(0, 0, 0);
     border: 2px solid black;
 }
@@ -170,13 +167,15 @@ button:active {
 .resourceGen p {
     padding-left: 5px;
     width: 45%;
-    font-size: 4vw;
+    font-size: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .resourceGen label {
-    font-size: 3vw;
+    width: 25%;
+    font-size: 40px;
     padding-right: 2vw;
+    text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 

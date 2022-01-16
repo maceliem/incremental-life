@@ -19,15 +19,30 @@ fetch("stats.json")
         loadGame()
     });
 
+var requirements
+
+fetch("data/resourceNeeds.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        requirements = data
+    });
 //when bar is pressed, it will go up and generate a resource of type, if we have requirements in inventory
-function runResourceBar(type, reqirements) {
-    for (reqirement of reqirements) {
-        for ([thing, level] of Object.entries(reqirement)) {
-            if (stats.inventory[thing] < level) {
-                alert(`You need a ${thing} in level ${level} first`)
-                return
-            }
+function runResourceBar(type) {
+    var requirement = requirements[type]
+    var text = ``
+    var i = false
+    for ([thing, level] of Object.entries(requirement)) {
+        if (stats.inventory[thing] < level) {
+            if(text == ``) text = `You need a ${thing} in level ${level}`
+            else text += ` and a ${thing} in level ${level}`
+            i = true
         }
+    }
+    if (i) {
+        alert(`${text} first`)
+        return
     }
     var progress = document.getElementById(`${type}Bar`)
     if (progress.dataset.active == "false") {
@@ -144,10 +159,6 @@ function doOftens() {
     saveGame()
 }
 
-function getLevel() {
-    return Math.floor(Math.sqrt(stats.experience.xp / 500))
-}
-
 function checkUnlocks() {
     if (!stats.unlocks.crafting) {
         if (stats.resources.wood >= 10) {
@@ -171,6 +182,15 @@ function unlockUnlocked() {
     }
     if (stats.unlocks.skills) {
         document.getElementById("skillsButton").style.visibility = "visible"
+    }
+    if (stats.unlocks.ores) {
+        for (type of ["coal", "gold", "copper", "tin"]) {
+            let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
+                return element.getAttribute("name") == type
+            })
+
+            resourceGen.style.display = "flex"
+        }
     }
 }
 
@@ -221,7 +241,20 @@ function skillMenuSwap(dir) {
 }
 
 function applyEffect(effect, category) {
-    stats[effect.attribute][effect.element][category + effect.type] += effect.change
+    if (effect.attribute != "unlock") {
+        stats[effect.attribute][effect.element][category + effect.type] += effect.change
+    } else {
+        if (effect.element == "ores") {
+            stats.unlocks.ores = true
+            for (type of ["coal", "gold", "copper", "tin"]) {
+                let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
+                    return element.getAttribute("name") == type
+                })
+
+                resourceGen.style.display = "flex"
+            }
+        }
+    }
 }
 
 function checkSkillDisable() {

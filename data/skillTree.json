@@ -1,7 +1,4 @@
 {
-    "all": {
-
-    },
     "wood": {
         "lumberJack": {
             "cost": 1,
@@ -21,11 +18,11 @@
                     "type": "*"
                 }
             ],
-            "text":"increase base wood reward by 1 but also increase base time by 2x"
+            "text": "increase base wood reward by 1 but also increase base time by 2x"
         },
         "improoved-wood": {
-            "cost": 5,
-            "max":5,
+            "cost": 2,
+            "max": 5,
             "requirements": [
                 "lumberJack"
             ],
@@ -38,6 +35,37 @@
                 }
             ],
             "text": "Reduce wood time by 5%"
+        },
+        "wood-for-days": {
+            "cost": 5,
+            "max": 3,
+            "requirements": [
+                "lumberJack"
+            ],
+            "effects": [
+                {
+                    "attribute": "value",
+                    "element": "wood",
+                    "change": 1,
+                    "type": "+"
+                }
+            ],
+            "text": "increase base wood reward by an aditional 1"
+        }
+    },
+    "stone": {},
+    "iron": {
+        "miners-delight": {
+            "cost": 1,
+            "max": 1,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "unlock",
+                    "element": "ores"
+                }
+            ],
+            "text": "unlock multiple new metals to mine"
         }
     }
 }

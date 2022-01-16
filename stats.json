@@ -2,7 +2,11 @@
     "resources": {
         "wood": 0,
         "stone": 0,
-        "iron": 0
+        "iron": 0,
+        "coal": 0,
+        "gold": 0,
+        "copper": 0,
+        "tin":0
     },
     "speed": {
         "wood": {
@@ -18,7 +22,31 @@
             "skills*": 1
         },
         "iron": {
-            "base": 100.0,
+            "base": 60.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "coal": {
+            "base": 30.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "gold": {
+            "base": 120.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "copper": {
+            "base": 10.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "tin": {
+            "base": 45.0,
             "items": 0,
             "skills+": 0,
             "skills*": 1
@@ -38,6 +66,30 @@
             "skills*": 1
         },
         "iron": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "coal": {
+            "base": 25.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "gold": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "copper": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1
+        },
+        "tin": {
             "base": 1.0,
             "items": 0,
             "skills+": 0,
@@ -84,6 +136,7 @@
     "unlocks": {
         "crafting": false,
         "levels": false,
-        "skills": false
+        "skills": false,
+        "ores": false
     }
 }
