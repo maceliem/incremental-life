@@ -4,8 +4,8 @@
             {"wood":0},
             {"wood":10},
             {"wood":20,"stone":2},
-            {"wood":50,"stone":5},
-            {"wood":100,"stone":20, "iron":3}
+            {"wood":30,"stone":5},
+            {"wood":50,"stone":20, "iron":3}
         ],
         "modifier": [
             {"unlock":"wood"},
@@ -25,10 +25,10 @@
     "pickaxe": {
         "costs": [
             {"wood":20},
-            {"wood":50,"stone":5},
-            {"wood":100,"stone":10},
-            {"wood":200,"stone":40, "iron":1},
-            {"wood":500,"stone":80, "iron":4}
+            {"wood":40,"stone":5},
+            {"wood":60,"stone":10},
+            {"wood":100,"stone":40, "iron":1},
+            {"wood":200,"stone":80, "iron":4}
         ],
         "modifier": [
             {"unlock":"stone"},
