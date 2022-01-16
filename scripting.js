@@ -132,8 +132,8 @@ function resetStats() {
             })
             .then(data => {
                 stats = data
-                updateValues()
                 saveGame()
+                location.reload()
             });
     }
 }
