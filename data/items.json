@@ -3,9 +3,9 @@
         "costs": [
             {"wood":0},
             {"wood":10},
-            {"wood":20,"stone":5},
-            {"wood":500,"stone":20},
-            {"wood":4000,"stone":40, "iron":4}
+            {"wood":20,"stone":2},
+            {"wood":50,"stone":5},
+            {"wood":100,"stone":20, "iron":3}
         ],
         "modifier": [
             {"unlock":"wood"},
@@ -16,19 +16,19 @@
         ],
         "craftSpeed":[
             0.5,
-            1.0,
             2.0,
-            5.0,
-            10.0
+            10.0,
+            20.0,
+            30.0
         ]
     },
     "pickaxe": {
         "costs": [
             {"wood":20},
-            {"wood":50,"stone":20},
-            {"wood":200,"stone":50},
-            {"wood":700,"stone":100, "iron":1},
-            {"wood":2000,"stone":500, "iron":5}
+            {"wood":50,"stone":5},
+            {"wood":100,"stone":10},
+            {"wood":200,"stone":40, "iron":1},
+            {"wood":500,"stone":80, "iron":4}
         ],
         "modifier": [
             {"unlock":"stone"},
@@ -40,9 +40,9 @@
         "craftSpeed":[
             5.0,
             10.0,
-            20.0,
-            50.0,
-            100.0
+            30.0,
+            60.0,
+            120.0
         ]
     }
 }
