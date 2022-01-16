@@ -341,6 +341,10 @@ button:active {
     background-color: wheat;
 }
 
+.skillRoom button:disabled .skillTooltip {
+    color: black;
+}
+
 #skillSelect {
     display: flex;
     justify-content: space-around;
@@ -356,3 +360,4 @@ button:active {
     width: 50%;
     text-align: center;
 }
+

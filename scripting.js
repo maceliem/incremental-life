@@ -35,7 +35,7 @@ function runResourceBar(type) {
     var i = false
     for ([thing, level] of Object.entries(requirement)) {
         if (stats.inventory[thing] < level) {
-            if(text == ``) text = `You need a ${thing} in level ${level}`
+            if (text == ``) text = `You need a ${thing} in level ${level}`
             else text += ` and a ${thing} in level ${level}`
             i = true
         }
@@ -249,7 +249,11 @@ function skillMenuSwap(dir) {
 
 function applyEffect(effect, category) {
     if (effect.attribute != "unlock") {
-        stats[effect.attribute][effect.element][category + effect.type] += effect.change
+        if (effect.element == "mining") {
+            for (element of ["stone", "iron", "coal", "gold", "copper", "tin"]) {
+                stats[effect.attribute][element][category + effect.type] += effect.change
+            }
+        } else { stats[effect.attribute][effect.element][category + effect.type] += effect.change }
     } else {
         if (effect.element == "ores") {
             stats.unlocks.ores = true
@@ -261,3 +265,4 @@ function applyEffect(effect, category) {
 function checkSkillDisable() {
 
 }
+

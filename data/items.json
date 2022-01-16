@@ -33,7 +33,7 @@
         "modifier": [
             {"unlock":"stone"},
             {"speed":{"stone":-4}},
-            {"speed":{"stone":-2}, "unlock":"iron"},
+            {"speed":{"stone":-2}},
             {"speed":{"stone":-1, "iron":-10}},
             {"speed":{"stone":-1, "iron":-10}}
         ],

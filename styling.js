@@ -45,7 +45,7 @@ function updateValues() {
     for (child of document.getElementsByClassName("craftElement")) {
         var tool = child.id
         var tier = stats.inventory[tool]
-        if (items[tool].costs.length == tier) {
+        if (items[tool].costs.length <= tier) {
             child.style.display = "none"
         }
         else {
@@ -112,7 +112,7 @@ function updateValues() {
                 for (requirement of attributes.requirements) {
                     if (stats.skills.upgrades[requirement] == undefined) {
                         i = true
-                        text.innerHTML += `<br> need: ${requirement}`
+                        text.innerHTML += `<br> <b>need:</b> ${requirement}`
                     }
                 }
                 button.disabled = i
@@ -155,7 +155,7 @@ function generateskillTree() {
                 for (requirement of attributes.requirements) {
                     if (stats.skills.upgrades[requirement] == undefined) {
                         button.disabled = true
-                        text.innerHTML += `<br> need: ${requirement}`
+                        text.innerHTML += `<br> <b>need:</b> ${requirement}`
                     }
                 }
             }
