@@ -316,6 +316,7 @@ button:active {
     display: none;
     height: 90%;
     justify-content: space-around;
+    align-items: center;
 }
 
 .skillRoom button {
