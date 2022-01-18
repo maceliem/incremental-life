@@ -289,6 +289,9 @@ function makeHouse(number) {
                 }
             }
         } 
+        for (let resourceGen of document.getElementsByClassName("resourceGen")) {
+            generateHousingDropdown(resourceGen.getElementsByTagName("select")[0],resourceGen.getAttribute("name"))
+        }
         saveGame()
     })
     button.innerHTML += `House #${number}`
