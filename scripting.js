@@ -202,6 +202,15 @@ function unlockUnlocked() {
     }
     if(stats.unlocks.housing){
         document.getElementById("housingButton").style.visibility = "visible"
+        for (resourceGen of document.getElementsByClassName("resourceGen")){
+            let select = document.createElement("select")
+            generateHousingDropdown(select, resourceGen.getAttribute("name"))
+            select.addEventListener("change", function(){
+                var val = select.value
+                stats.houses[val.number].occupation = resourceGen.getAttribute("name")
+            })
+            resourceGen.appendChild(select)
+        }
     }
 }
 

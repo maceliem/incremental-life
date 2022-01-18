@@ -90,13 +90,15 @@ button:active {
 }
 
 /*left bar stuff*/
-#craftingButton {
+.leftMenu button {
     visibility: hidden;
 }
 
-#skillsButton {
-    visibility: hidden;
+#resourceButton {
+    visibility: visible;
 }
+
+
 
 /*right bar stuff*/
 .setting {
@@ -131,7 +133,7 @@ button:active {
 }
 
 /*resource page stuff*/
-#housing {
+#resource {
     display: block;
 }
 
@@ -166,7 +168,7 @@ button:active {
 
 .resourceGen p {
     padding-left: 5px;
-    width: 45%;
+    width: 30%;
     font-size: 50px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -360,10 +362,6 @@ button:active {
 #skillSelect p {
     width: 50%;
     text-align: center;
-}
-
-#housing {
-    display: flex
 }
 
 #housing button {

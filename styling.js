@@ -229,9 +229,10 @@ function makeHouse(number) {
                 } else {
                     stats.resources[resource] -= value
                     stats.houses.push({
+                        "number":stats.houses.length,
                         "tier": 0,
                         "workCost": housingCosts[0].workCost,
-                        "occupation":"none"
+                        "occupation": "none"
                     })
                     let tier = stats.houses[button.dataset.number].tier
                     text.innerHTML = `<b>Current house tier:</b> ${tier}<br><b>Current work cost:</b>`
@@ -312,4 +313,29 @@ function displayNumber(number) {
 function changeConfig(config, next) {
     stats.config[config] = next
     updateValues()
+}
+
+function generateHousingDropdown(select, type) {
+    while (select.firstChild) { //remove old list elements
+        select.removeChild(select.lastChild)
+    }
+    console.log(select)
+    let firstOption = document.createElement("option")
+    firstOption.innerHTML = "none"
+    firstOption.value = "none"
+    select.appendChild(firstOption)
+    for (house of stats.houses) {
+        if (house.occupation == "none") {
+            var i = 0
+            for(key of Object.keys(stats.resources)){
+                if(key == type && house.tier >= i){
+                    let option = document.createElement("option")
+                    option.value = house
+                    option.innerHTML = `Manager #${house.number}`
+                    select.appendChild(option)
+                }
+                i++
+            }
+        }
+    }
 }
