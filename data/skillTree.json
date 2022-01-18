@@ -54,6 +54,18 @@
         }
     },
     "stone": {
+        "housing":{
+            "cost":1,
+            "max":1,
+            "requirements": null,
+            "effects":[
+                {
+                    "attribute":"unlock",
+                    "element":"housing"
+                }
+            ],
+            "text":"Unlock housing, so you can house people to automate resource gen. For a price"
+        },
         "rocking-around": {
             "cost": 2,
             "max": 5,

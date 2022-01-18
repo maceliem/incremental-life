@@ -113,7 +113,7 @@ function craft(item) {
     if (progress.dataset.active == "false") {
         progress.dataset.active = true
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / ( calcCraftSpeed(items[item].craftSpeed[curTier]) * 10)) / 10;
+            progress.value += (100 / (calcCraftSpeed(items[item].craftSpeed[curTier]) * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
@@ -200,6 +200,9 @@ function unlockUnlocked() {
             document.getElementById(item).style.display = "block"
         }
     }
+    if(stats.unlocks.housing){
+        document.getElementById("housingButton").style.visibility = "visible"
+    }
 }
 
 function SkillTotalXpToLevel(level) {
@@ -224,7 +227,7 @@ function calcEffects(element) {
     return (element.base + element.items + element["skills+"]) * element["skills*"]
 }
 
-function calcCraftSpeed(baseTime){
+function calcCraftSpeed(baseTime) {
     var element = stats.speed.crafting
     return (baseTime + element.items + element["skills+"]) * element["skills*"]
 }
@@ -257,14 +260,12 @@ function applyEffect(effect, category) {
             for (element of ["stone", "iron", "coal", "gold", "copper", "tin"]) {
                 stats[effect.attribute][element][category + effect.type] += effect.change
             }
-        } else { 
-            stats[effect.attribute][effect.element][category + effect.type] += effect.change 
+        } else {
+            stats[effect.attribute][effect.element][category + effect.type] += effect.change
         }
     } else {
-        if (effect.element == "ores") {
-            stats.unlocks.ores = true
-            unlockUnlocked()
-        }
+        stats.unlocks[effect.element] = true
+        unlockUnlocked()
     }
 }
 

@@ -156,9 +156,8 @@
         "crafting": false,
         "levels": false,
         "skills": false,
-        "ores": false
+        "ores": false,
+        "housing": false
     },
-    "houses":[
-        
-    ]
+    "houses": []
 }
