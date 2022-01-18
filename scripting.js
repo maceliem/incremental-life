@@ -79,6 +79,7 @@ function loadGame() {
     generateskillTree()
     doOftens()
     changeColor(stats.config.color)
+    generateHousing()
     unlockUnlocked()
 }
 

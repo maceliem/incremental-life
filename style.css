@@ -131,7 +131,7 @@ button:active {
 }
 
 /*resource page stuff*/
-#resource {
+#housing {
     display: block;
 }
 
@@ -362,3 +362,29 @@ button:active {
     text-align: center;
 }
 
+#housing {
+    display: flex
+}
+
+#housing button {
+    width: 100px;
+    height: 40px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+}
+
+#housing button span{
+    visibility: hidden;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    left: 0%;
+}
+
+#housing button:hover span{
+    visibility: visible;
+    width: inherit;
+    background-color: wheat;
+}

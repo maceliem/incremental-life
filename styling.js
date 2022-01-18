@@ -15,6 +15,13 @@ fetch("data/skillTree.json")
     })
     .then(data => skillTree = data);
 
+var housingCosts
+
+fetch("data/housing.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => housingCosts = data);
 
 //change colorscheme of everything to color
 function changeColor(color) {
@@ -165,9 +172,129 @@ function generateskillTree() {
     }
 }
 
+function generateHousing() {
+    for (house in stats.houses) {
+        makeHouse(house)
+    }
+    makeHouse(stats.houses.length)
+}
+
+function makeHouse(number) {
+    var room = document.getElementById("housing")
+    let button = document.createElement("button")
+    let text = document.createElement("span")
+    button.dataset.number = number
+    if (stats.houses[button.dataset.number] == undefined) {
+        text.innerHTML = `Build a new house to get a new worker <br> <b>Build cost:</b><br>`
+        for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
+            text.innerHTML += `${type} ${value} <br>`
+        }
+    } else if (stats.houses[number].tier + 1 == housingCosts.length) {
+        var tier = stats.houses[button.dataset.number].tier
+        text.innerHTML = `<b>Max Tier</b><br><b>Current work cost:</b>`
+        for ([type, value] of Object.entries(housingCosts[tier].workCost)) {
+            text.innerHTML += `${type} ${value} <br>`
+        }
+    } else {
+        var tier = stats.houses[button.dataset.number].tier
+        text.innerHTML = `<b>Current house tier:</b> ${tier}<br><b>Current work cost:</b>`
+        for ([type, value] of Object.entries(housingCosts[tier].workCost)) {
+            text.innerHTML += `${type} ${value} <br>`
+        }
+        text.innerHTML += `<b>upgrade cost:</b>`
+        for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
+            text.innerHTML += `${type} ${value} <br>`
+        }
+        text.innerHTML += `<b>next work cost:</b>`
+        for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
+            text.innerHTML += `${type} ${value} <br>`
+        }
+    }
+    button.addEventListener('click', function () {
+        let text = button.getElementsByTagName("span")[0]
+        if (stats.houses[button.dataset.number] == undefined) {
+            for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
+                text.innerHTML += `${type} ${value} <br>`
+            }
+            let i = false
+            let missingText = ``
+            for ([resource, value] of Object.entries(housingCosts[0].buildCost)) {
+                if (stats.resources[resource] < value) {
+                    i = true
+                    missingText += `You need at least ${value} of ${resource}`
+                }
+                if (i) {
+                    alert(missingText)
+                    return
+                } else {
+                    stats.resources[resource] -= value
+                    stats.houses.push({
+                        "tier": 0,
+                        "workCost": housingCosts[0].workCost,
+                        "occupation":"none"
+                    })
+                    let tier = stats.houses[button.dataset.number].tier
+                    text.innerHTML = `<b>Current house tier:</b> ${tier}<br><b>Current work cost:</b>`
+                    for ([type, value] of Object.entries(housingCosts[tier].workCost)) {
+                        text.innerHTML += `${type} ${value} <br>`
+                    }
+                    text.innerHTML += `<b>upgrade cost:</b>`
+                    for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
+                        text.innerHTML += `${type} ${value} <br>`
+                    }
+                    text.innerHTML += `<b>next work cost:</b>`
+                    for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
+                        text.innerHTML += `${type} ${value} <br>`
+                    }
+                }
+            }
+        } else {
+            let i = false
+            let missingText = ``
+            let newTier = stats.houses[number].tier + 1
+            if (newTier == housingCosts.length) {
+                return
+            }
+            for ([resource, value] of Object.entries(housingCosts[newTier].buildCost)) {
+                if (stats.resources[resource] < value) {
+                    i = true
+                    missingText += `You need at least ${value} of ${resource}`
+                }
+                if (i) {
+                    alert(missingText)
+                    return
+                } else {
+                    stats.resources[resource] -= value
+                    stats.houses[number].tier = newTier
+                    stats.houses[number].workCost = housingCosts[newTier].workCost
+                    if (stats.houses[number].tier + 1 == housingCosts.length) {
+                        text.innerHTML = `<b>Max Tier</b>`
+                    } else {
+                        let tier = stats.houses[button.dataset.number].tier
+                        text.innerHTML = `<b>Current house tier:</b> ${tier}<br><b>Current work cost:</b>`
+                        for ([type, value] of Object.entries(housingCosts[tier].workCost)) {
+                            text.innerHTML += `${type} ${value} <br>`
+                        }
+                        text.innerHTML += `<b>upgrade cost:</b>`
+                        for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
+                            text.innerHTML += `${type} ${value} <br>`
+                        }
+                        text.innerHTML += `<b>next work cost:</b>`
+                        for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
+                            text.innerHTML += `${type} ${value} <br>`
+                        }
+                    }
+                }
+            }
+        }
+        saveGame()
+    })
+    button.appendChild(text)
+    room.appendChild(button)
+}
+
 function displayNumber(number) {
     var num = number.toString()
-    console.log(num)
     if (num.length < 7) { return num }
 
     else if (stats.config.numberFormat == "scientific") {

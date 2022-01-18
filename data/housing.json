@@ -1,0 +1,14 @@
+[
+    {
+        "buildCost":{"stone":5},
+        "workCost":{"wood":1}
+    },
+    {
+        "buildCost":{"stone":10, "iron":2},
+        "workCost":{"wood":2}
+    },
+    {
+        "buildCost":{"stone":20, "iron":5},
+        "workCost":{"wood":5}
+    }
+]

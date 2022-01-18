@@ -157,5 +157,8 @@
         "levels": false,
         "skills": false,
         "ores": false
-    }
+    },
+    "houses":[
+        
+    ]
 }
