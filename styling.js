@@ -187,7 +187,7 @@ function makeHouse(number) {
     if (stats.houses[button.dataset.number] == undefined) {
         text.innerHTML = `Build a new house to get a new worker <br> <b>Build cost:</b><br>`
         for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
-            text.innerHTML += `${type} ${displayNumber(value*Math.pow(10,number))} <br>`
+            text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
         }
     } else if (stats.houses[number].tier + 1 == housingCosts.length) {
         var tier = stats.houses[button.dataset.number].tier
@@ -203,7 +203,7 @@ function makeHouse(number) {
         }
         text.innerHTML += `<b>upgrade cost:</b>`
         for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
-            text.innerHTML += `${type} ${displayNumber(value*Math.pow(10,number))} <br>`
+            text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
         }
         text.innerHTML += `<b>next work cost:</b>`
         for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
@@ -214,20 +214,20 @@ function makeHouse(number) {
         let text = button.getElementsByTagName("span")[0]
         if (stats.houses[button.dataset.number] == undefined) {
             for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
-                text.innerHTML += `${type} ${displayNumber(value*Math.pow(10,number))} <br>`
+                text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
             }
             let i = false
             let missingText = ``
             for ([resource, value] of Object.entries(housingCosts[0].buildCost)) {
-                if (stats.resources[resource] < value*Math.pow(10,number)) {
+                if (stats.resources[resource] < value*Math.pow(4,number)) {
                     i = true
-                    missingText += `You need at least ${displayNumber(value*Math.pow(10,number))} of ${resource}`
+                    missingText += `You need at least ${displayNumber(value*Math.pow(4,number))} of ${resource}`
                 }
                 if (i) {
                     alert(missingText)
                     return
                 } else {
-                    stats.resources[resource] -= value*Math.pow(10,number)
+                    stats.resources[resource] -= value*Math.pow(4,number)
                     stats.houses.push({
                         "number":stats.houses.length,
                         "tier": 0,
@@ -242,7 +242,7 @@ function makeHouse(number) {
                     }
                     text.innerHTML += `<b>upgrade cost:</b>`
                     for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
-                        text.innerHTML += `${type} ${displayNumber(value*Math.pow(10,number))} <br>`
+                        text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
                     }
                     text.innerHTML += `<b>next work cost:</b>`
                     for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
@@ -258,15 +258,15 @@ function makeHouse(number) {
                 return
             }
             for ([resource, value] of Object.entries(housingCosts[newTier].buildCost)) {
-                if (stats.resources[resource] < value*Math.pow(10,number)) {
+                if (stats.resources[resource] < value*Math.pow(4,number)) {
                     i = true
-                    missingText += `You need at least ${displayNumber(value*Math.pow(10,number))} of ${resource}`
+                    missingText += `You need at least ${displayNumber(value*Math.pow(4,number))} of ${resource}`
                 }
                 if (i) {
                     alert(missingText)
                     return
                 } else {
-                    stats.resources[resource] -= value*Math.pow(10,number)
+                    stats.resources[resource] -= value*Math.pow(4,number)
                     stats.houses[number].tier = newTier
                     stats.houses[number].workCost = housingCosts[newTier].workCost
                     if (stats.houses[number].tier + 1 == housingCosts.length) {
@@ -279,7 +279,7 @@ function makeHouse(number) {
                         }
                         text.innerHTML += `<b>upgrade cost:</b>`
                         for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
-                            text.innerHTML += `${type} ${displayNumber(value*Math.pow(10,number))} <br>`
+                            text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
                         }
                         text.innerHTML += `<b>next work cost:</b>`
                         for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
