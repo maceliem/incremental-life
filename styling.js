@@ -122,6 +122,7 @@ function updateValues() {
                         text.innerHTML += `<br> <b>need:</b> ${requirement}`
                     }
                 }
+                if(cur == attributes.max) i = true
                 button.disabled = i
             }
         }
