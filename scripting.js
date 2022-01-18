@@ -53,13 +53,36 @@ function runResourceBar(type) {
             //when progress is done
             if (progress.value == progress.max) {
                 progress.value = 0
-                progress.dataset.active = false
                 stats.resources[type] += calcEffects(stats.value[type])
                 stats.experience.xp += stats.experience.gain[type]
                 stats.skills.xp[type]++
+                
+
+                var manager = false
+                for (house of stats.houses) {
+                    if (house.occupation == type) {
+                        manager = true
+                        var poor = false
+                        //if can't pay manager
+                        for ([resource, value] of Object.entries(house.workCost)) {
+                            if (stats.resources[resource] < value) {
+                                poor = true
+                            }
+                        }
+                        if (!poor) {
+                            for ([resource, value] of Object.entries(house.workCost)) {
+                                stats.resources[resource] -= value
+                            }
+                        }
+
+                    }
+                }
+                if (poor || !manager) {
+                    progress.dataset.active = false
+                    clearInterval(timer)
+                }
                 doOftens()
                 checkSkillUp(type)
-                clearInterval(timer)
             }
         }, 10)
     }
@@ -200,14 +223,21 @@ function unlockUnlocked() {
             document.getElementById(item).style.display = "block"
         }
     }
-    if(stats.unlocks.housing){
+    if (stats.unlocks.housing) {
         document.getElementById("housingButton").style.visibility = "visible"
-        for (resourceGen of document.getElementsByClassName("resourceGen")){
+        for (let resourceGen of document.getElementsByClassName("resourceGen")) {
             let select = document.createElement("select")
             generateHousingDropdown(select, resourceGen.getAttribute("name"))
-            select.addEventListener("change", function(){
-                var val = select.value
-                stats.houses[val.number].occupation = resourceGen.getAttribute("name")
+            select.addEventListener("change", function () {
+                let val = select.value
+                console.log(val, resourceGen.getAttribute("name"))
+                if (val == "none") {
+                    let house = stats.houses.find(element => {
+                        return element.occupation == resourceGen.getAttribute("name")
+                    })
+                    house.occupation = val
+                }
+                else stats.houses[val].occupation = resourceGen.getAttribute("name")
             })
             resourceGen.appendChild(select)
         }

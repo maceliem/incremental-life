@@ -319,18 +319,17 @@ function generateHousingDropdown(select, type) {
     while (select.firstChild) { //remove old list elements
         select.removeChild(select.lastChild)
     }
-    console.log(select)
     let firstOption = document.createElement("option")
     firstOption.innerHTML = "none"
     firstOption.value = "none"
     select.appendChild(firstOption)
     for (house of stats.houses) {
-        if (house.occupation == "none") {
+        if (house.occupation == "none" || house.occupation == type) {
             var i = 0
             for(key of Object.keys(stats.resources)){
                 if(key == type && house.tier >= i){
                     let option = document.createElement("option")
-                    option.value = house
+                    option.value = house.number
                     option.innerHTML = `Manager #${house.number}`
                     select.appendChild(option)
                 }
