@@ -56,7 +56,7 @@ function runResourceBar(type) {
                 stats.resources[type] += calcEffects(stats.value[type])
                 stats.experience.xp += stats.experience.gain[type]
                 stats.skills.xp[type]++
-                
+
 
                 var manager = false
                 for (house of stats.houses) {
@@ -119,22 +119,23 @@ function switchMenu(id) {
 function craft(item) {
     var curTier = stats.inventory[item]
     var costs = items[item].costs[curTier]
-
-    //check if we can afford to craft
-    for ([resource, value] of Object.entries(costs)) {
-        if (stats.resources[resource] < value) {
-            alert(`you don't have ${value} of ${resource}`)
-            return
-        }
-    }
-    //use resources
-    for ([resource, value] of Object.entries(costs)) {
-        stats.resources[resource] -= value
-    }
     var progress = document.getElementById(item).getElementsByTagName("progress")[0]
 
     if (progress.dataset.active == "false") {
+
+        //check if we can afford to craft
+        for ([resource, value] of Object.entries(costs)) {
+            if (stats.resources[resource] < value) {
+                alert(`you don't have ${value} of ${resource}`)
+                return
+            }
+        }
+        //use resources
+        for ([resource, value] of Object.entries(costs)) {
+            stats.resources[resource] -= value
+        }
         progress.dataset.active = true
+        doOftens()
         var timer = setInterval(function () {//interval to animate progress going up
             progress.value += (100 / (calcCraftSpeed(items[item].craftSpeed[curTier]) * 10)) / 10;
 
