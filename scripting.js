@@ -230,7 +230,6 @@ function unlockUnlocked() {
             generateHousingDropdown(select, resourceGen.getAttribute("name"))
             select.addEventListener("change", function () {
                 let val = select.value
-                console.log(val, resourceGen.getAttribute("name"))
                 if (val == "none") {
                     let house = stats.houses.find(element => {
                         return element.occupation == resourceGen.getAttribute("name")
@@ -238,6 +237,7 @@ function unlockUnlocked() {
                     house.occupation = val
                 }
                 else stats.houses[val].occupation = resourceGen.getAttribute("name")
+                generateHousingDropdown(select, resourceGen.getAttribute("name"))
             })
             resourceGen.appendChild(select)
         }

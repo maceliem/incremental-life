@@ -234,6 +234,7 @@ function makeHouse(number) {
                         "workCost": housingCosts[0].workCost,
                         "occupation": "none"
                     })
+                    makeHouse(stats.houses.length)
                     let tier = stats.houses[button.dataset.number].tier
                     text.innerHTML = `<b>Current house tier:</b> ${tier}<br><b>Current work cost:</b>`
                     for ([type, value] of Object.entries(housingCosts[tier].workCost)) {
@@ -319,12 +320,26 @@ function generateHousingDropdown(select, type) {
     while (select.firstChild) { //remove old list elements
         select.removeChild(select.lastChild)
     }
+    for (house of stats.houses) {
+        if (house.occupation == type) {
+            var i = 0
+            for(key of Object.keys(stats.resources)){
+                if(key == type && house.tier >= i){
+                    let option = document.createElement("option")
+                    option.value = house.number
+                    option.innerHTML = `Manager #${house.number}`
+                    select.appendChild(option)
+                }
+                i++
+            }
+        }
+    }
     let firstOption = document.createElement("option")
     firstOption.innerHTML = "none"
     firstOption.value = "none"
     select.appendChild(firstOption)
     for (house of stats.houses) {
-        if (house.occupation == "none" || house.occupation == type) {
+        if (house.occupation == "none") {
             var i = 0
             for(key of Object.keys(stats.resources)){
                 if(key == type && house.tier >= i){
