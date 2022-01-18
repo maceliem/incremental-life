@@ -28,21 +28,27 @@
             {"wood":40,"stone":5},
             {"wood":60,"stone":10},
             {"wood":100,"stone":40, "iron":1},
-            {"wood":200,"stone":80, "iron":4}
+            {"wood":200,"stone":80, "iron":4},
+            {"wood":600,"stone":200, "iron":10},
+            {"wood":1000,"stone":500, "iron":50}
         ],
         "modifier": [
             {"unlock":"stone"},
             {"speed":{"stone":-4}},
             {"speed":{"stone":-2}},
             {"speed":{"stone":-1, "iron":-10}},
-            {"speed":{"stone":-1, "iron":-10}}
+            {"speed":{"stone":-1, "iron":-10}},
+            {"speed":{"stone":-1, "iron":-5}},
+            {"speed":{"stone":-1, "iron":-5}}
         ],
         "craftSpeed":[
             5.0,
             10.0,
             30.0,
             60.0,
-            120.0
+            120.0,
+            180.0,
+            240.0
         ]
     },
     "torch": {

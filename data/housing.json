@@ -10,5 +10,21 @@
     {
         "buildCost":{"stone":20, "iron":5},
         "workCost":{"wood":5}
+    },
+    {
+        "buildCost":{"stone":50, "iron":10},
+        "workCost":{"wood":10, "stone":1}
+    },
+    {
+        "buildCost":{"stone":100, "iron":15, "gold":1},
+        "workCost":{"wood":10, "stone":2}
+    },
+    {
+        "buildCost":{"stone":150, "iron":20, "gold":2},
+        "workCost":{"wood":12, "stone":3}
+    },
+    {
+        "buildCost":{"stone":200, "iron":25, "gold":5},
+        "workCost":{"wood":15, "stone":5}
     }
 ]
