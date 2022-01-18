@@ -364,6 +364,12 @@ button:active {
     text-align: center;
 }
 
+#housing {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 #housing button {
     width: 100px;
     height: 40px;
