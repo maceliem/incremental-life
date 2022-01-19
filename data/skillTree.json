@@ -30,11 +30,11 @@
                 {
                     "attribute": "speed",
                     "element": "wood",
-                    "change": -0.05,
+                    "change": -0.1,
                     "type": "*"
                 }
             ],
-            "text": "Reduce wood time by 5%"
+            "text": "Reduce wood time by 10%"
         },
         "wood-for-days": {
             "cost": 5,
@@ -74,11 +74,11 @@
                 {
                     "attribute": "speed",
                     "element": "stone",
-                    "change": -0.05,
+                    "change": -0.1,
                     "type": "*"
                 }
             ],
-            "text": "increase speed of stone by 5%"
+            "text": "increase speed of stone by 10%"
         },
         "mining-for-days": {
             "cost": 2,
@@ -88,11 +88,11 @@
                 {
                     "attribute": "speed",
                     "element": "mining",
-                    "change": -0.01,
+                    "change": -0.02,
                     "type": "*"
                 }
             ],
-            "text": "increase speed of all mining by 1%"
+            "text": "increase speed of all mining by 2%"
         }
     },
     "iron": {

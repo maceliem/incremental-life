@@ -26,20 +26,20 @@
         "costs": [
             {"wood":20},
             {"wood":40,"stone":5},
-            {"wood":60,"stone":10},
-            {"wood":100,"stone":40, "iron":1},
-            {"wood":200,"stone":80, "iron":4},
-            {"wood":600,"stone":200, "iron":10},
-            {"wood":1000,"stone":500, "iron":50}
+            {"wood":80,"stone":10},
+            {"wood":150,"stone":40, "iron":1},
+            {"wood":300,"stone":80, "iron":6},
+            {"wood":800,"stone":200, "iron":15},
+            {"wood":1200,"stone":500, "iron":50}
         ],
         "modifier": [
             {"unlock":"stone"},
             {"speed":{"stone":-4}},
             {"speed":{"stone":-2}},
+            {"speed":{"stone":-2, "iron":-15}},
+            {"speed":{"stone":-2, "iron":-15}},
             {"speed":{"stone":-1, "iron":-10}},
-            {"speed":{"stone":-1, "iron":-10}},
-            {"speed":{"stone":-1, "iron":-5}},
-            {"speed":{"stone":-1, "iron":-5}}
+            {"speed":{"stone":-1, "iron":-10}}
         ],
         "craftSpeed":[
             5.0,

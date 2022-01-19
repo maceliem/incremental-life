@@ -154,7 +154,7 @@ function craft(item) {
                     }
                 }
                 stats.experience.xp += stats.experience.gain.crafting
-                stats.skills.xp.crafting++
+                stats.skills.xp.crafting+= 10
                 checkSkillUp("crafting")
                 doOftens()
                 clearInterval(timer)
