@@ -144,6 +144,7 @@ function craft(item) {
                 progress.value = 0
                 progress.dataset.active = false
                 stats.inventory[item]++ //item level up
+                popUp(`done crafting ${item} tier ${stats.inventory[item]}`)
 
                 //apply modifiers from crafted item
                 for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
@@ -154,7 +155,7 @@ function craft(item) {
                     }
                 }
                 stats.experience.xp += stats.experience.gain.crafting
-                stats.skills.xp.crafting+= 10
+                stats.skills.xp.crafting += 10
                 checkSkillUp("crafting")
                 doOftens()
                 clearInterval(timer)
@@ -189,6 +190,7 @@ function checkUnlocks() {
         if (stats.resources.wood >= 10) {
             stats.unlocks.crafting = true
             document.getElementById("craftingButton").style.visibility = "visible"
+            popUp(`Unlocked Crafting`)
         }
     }
     if (!stats.unlocks.skills) {
@@ -196,6 +198,7 @@ function checkUnlocks() {
             if (xp >= 50) {
                 stats.unlocks.skills = true
                 document.getElementById("skillsButton").style.visibility = "visible"
+                popUp(`Unlocked skills`)
             }
         }
     }
@@ -259,6 +262,7 @@ function checkSkillUp(skillName) {
         stats.skills.level[skillName]++
         stats.skills.xp[skillName] -= required
         stats.skills.points[skillName]++
+        popUp(`+1 ${skillName} skill point`)
 
     }
 }
@@ -309,3 +313,18 @@ function applyEffect(effect, category) {
     }
 }
 
+function popUp(text) {
+    let popUp = document.createElement("div")
+    popUp.innerHTML = text
+    popUp.classList.add("popUp")
+    popUp.style.opacity = 5.0
+    let con = document.getElementById("popupContainer")
+    con.appendChild(popUp)
+    let timer = setInterval(function () {
+        popUp.style.opacity -= 0.1
+        if (popUp.style.opacity == 0) {
+            con.removeChild(popUp)
+            clearInterval(timer)
+        }
+    }, 100)
+}

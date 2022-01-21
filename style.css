@@ -132,6 +132,25 @@ button:active {
     transition: max-height 1s;
 }
 
+/*popup stuff*/
+#popupContainer {
+    position: fixed;
+    width: 200px;
+    height: auto;
+    right: 10%;
+    bottom: 5%;
+}
+
+.popUp {
+    text-align: center;
+    padding: 15px;
+    background-color: white;
+    height: auto;
+    border: solid 2px black;
+    border-radius: 15%;
+    border-bottom-right-radius: 0;
+}
+
 /*resource page stuff*/
 #resource {
     display: block;
