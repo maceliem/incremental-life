@@ -413,13 +413,13 @@ function generateRebirthScreen() {
                     comitted = true
                     stats.experience.pp--
                     stats.perks[tier].push(perkName)
-                    applyPerk(tier, perkName)
                     if (tier > 0) for (let i = 0; i < tier; i++) {
                         for (let perkName of Object.keys(perksList[i])) {
                             removePerk(i, perkName)
                             stats.perks[i] = stats.perks[i].filter(e => e != perkName)
                         }
                     }
+                    applyPerk(tier, perkName)
 
                     generateRebirthScreen()
                 }
@@ -445,6 +445,12 @@ function applyPerk(tier, perkName) {
                 stats[effect.attribute][element][`perks${effect.type}`] += effect.change
             }
         }
+        if(effect.attribute == "keep"){
+            if(effect.element == "resources"){
+                stats.keepers[effect.element] = Math.max(stats.keepers[effect.element], effect.amount)
+            }
+            else stats.keepers[effect.element] = true
+        }
     }
 }
 
@@ -454,6 +460,12 @@ function removePerk(tier, perkName) {
             if (effect.element == "all") for (element of Object.keys(stats.resources)) {
                 stats[effect.attribute][element][`perks${effect.type}`] -= effect.change
             }
+        }
+        if(effect.attribute == "keep"){
+            if(effect.element == "resources"){
+                if(stats.keepers[effect.element] == effect.amount) stats.keepers[effect.element] = 0
+            }
+            else stats.keepers[effect.element] = false
         }
     }
 }

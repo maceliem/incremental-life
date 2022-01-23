@@ -260,6 +260,7 @@
     "houses": [],
     "perks":[],
     "keepers":{
-        "skills":false
+        "skills":false,
+        "resources":0
     }
 }

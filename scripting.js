@@ -362,7 +362,11 @@ function beginRebirth() {
                 return response.json();
             })
             .then(data => {
-                stats.resources = data.resources
+                for(let [resource, amount] of Object.entries(stats.resources)){
+                    console.log(resource, amount)
+                    if(amount > stats.keepers.resources) stats.resources[resource] = stats.keepers.resources
+                    console.log(resource, amount)
+                }
                 for (attribute of ["speed", "value", "skillGain"]) {
                     for (element of Object.keys(stats.resources)) {
                         stats[attribute][element].base = data[attribute][element].base
