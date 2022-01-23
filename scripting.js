@@ -151,10 +151,10 @@ function craft(item) {
                 popUp(`done crafting ${item} tier ${stats.inventory[item]}`)
 
                 //apply modifiers from crafted item
-                for ([atribute, modified] of Object.entries(items[item].modifier[curTier])) {
+                for ([attribute, modified] of Object.entries(items[item].modifier[curTier])) {
                     for ([element, value] of Object.entries(modified)) {
-                        if (atribute != "unlock") {
-                            stats[atribute][element].items += value;
+                        if (attribute != "unlock") {
+                            applyEffect({attribute:attribute, element:element, type:"",change:value},"items")
                         }
                     }
                 }
@@ -363,9 +363,7 @@ function beginRebirth() {
             })
             .then(data => {
                 for(let [resource, amount] of Object.entries(stats.resources)){
-                    console.log(resource, amount)
                     if(amount > stats.keepers.resources) stats.resources[resource] = stats.keepers.resources
-                    console.log(resource, amount)
                 }
                 for (attribute of ["speed", "value", "skillGain"]) {
                     for (element of Object.keys(stats.resources)) {
