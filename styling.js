@@ -23,6 +23,18 @@ fetch("data/housing.json")
     })
     .then(data => housingCosts = data);
 
+var perksList
+
+fetch("data/perks.json")
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        perksList = data
+    });
+
+
+
 //change colorscheme of everything to color
 function changeColor(color) {
     var scheme = colors[color]
@@ -122,7 +134,7 @@ function updateValues() {
                         text.innerHTML += `<br> <b>need:</b> ${requirement}`
                     }
                 }
-                if(cur == attributes.max) i = true
+                if (cur == attributes.max) i = true
                 button.disabled = i
             }
         }
@@ -188,7 +200,7 @@ function makeHouse(number) {
     if (stats.houses[button.dataset.number] == undefined) {
         text.innerHTML = `Build a new house to get a new worker <br> <b>Build cost:</b><br>`
         for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
-            text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
+            text.innerHTML += `${type} ${displayNumber(value * Math.pow(4, number))} <br>`
         }
     } else if (stats.houses[number].tier + 1 == housingCosts.length) {
         var tier = stats.houses[button.dataset.number].tier
@@ -204,7 +216,7 @@ function makeHouse(number) {
         }
         text.innerHTML += `<b>upgrade cost:</b>`
         for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
-            text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
+            text.innerHTML += `${type} ${displayNumber(value * Math.pow(4, number))} <br>`
         }
         text.innerHTML += `<b>next work cost:</b>`
         for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
@@ -215,22 +227,22 @@ function makeHouse(number) {
         let text = button.getElementsByTagName("span")[0]
         if (stats.houses[button.dataset.number] == undefined) {
             for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
-                text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
+                text.innerHTML += `${type} ${displayNumber(value * Math.pow(4, number))} <br>`
             }
             let i = false
             let missingText = ``
             for ([resource, value] of Object.entries(housingCosts[0].buildCost)) {
-                if (stats.resources[resource] < value*Math.pow(4,number)) {
+                if (stats.resources[resource] < value * Math.pow(4, number)) {
                     i = true
-                    missingText += `You need at least ${displayNumber(value*Math.pow(4,number))} of ${resource}`
+                    missingText += `You need at least ${displayNumber(value * Math.pow(4, number))} of ${resource}`
                 }
                 if (i) {
                     alert(missingText)
                     return
                 } else {
-                    stats.resources[resource] -= value*Math.pow(4,number)
+                    stats.resources[resource] -= value * Math.pow(4, number)
                     stats.houses.push({
-                        "number":stats.houses.length,
+                        "number": stats.houses.length,
                         "tier": 0,
                         "workCost": housingCosts[0].workCost,
                         "occupation": "none"
@@ -243,7 +255,7 @@ function makeHouse(number) {
                     }
                     text.innerHTML += `<b>upgrade cost:</b>`
                     for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
-                        text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
+                        text.innerHTML += `${type} ${displayNumber(value * Math.pow(4, number))} <br>`
                     }
                     text.innerHTML += `<b>next work cost:</b>`
                     for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
@@ -259,15 +271,15 @@ function makeHouse(number) {
                 return
             }
             for ([resource, value] of Object.entries(housingCosts[newTier].buildCost)) {
-                if (stats.resources[resource] < value*Math.pow(4,number)) {
+                if (stats.resources[resource] < value * Math.pow(4, number)) {
                     i = true
-                    missingText += `You need at least ${displayNumber(value*Math.pow(4,number))} of ${resource}`
+                    missingText += `You need at least ${displayNumber(value * Math.pow(4, number))} of ${resource}`
                 }
                 if (i) {
                     alert(missingText)
                     return
                 } else {
-                    stats.resources[resource] -= value*Math.pow(4,number)
+                    stats.resources[resource] -= value * Math.pow(4, number)
                     stats.houses[number].tier = newTier
                     stats.houses[number].workCost = housingCosts[newTier].workCost
                     if (stats.houses[number].tier + 1 == housingCosts.length) {
@@ -280,7 +292,7 @@ function makeHouse(number) {
                         }
                         text.innerHTML += `<b>upgrade cost:</b>`
                         for ([type, value] of Object.entries(housingCosts[tier + 1].buildCost)) {
-                            text.innerHTML += `${type} ${displayNumber(value*Math.pow(4,number))} <br>`
+                            text.innerHTML += `${type} ${displayNumber(value * Math.pow(4, number))} <br>`
                         }
                         text.innerHTML += `<b>next work cost:</b>`
                         for ([type, value] of Object.entries(housingCosts[tier + 1].workCost)) {
@@ -289,9 +301,9 @@ function makeHouse(number) {
                     }
                 }
             }
-        } 
+        }
         for (let resourceGen of document.getElementsByClassName("resourceGen")) {
-            generateHousingDropdown(resourceGen.getElementsByTagName("select")[0],resourceGen.getAttribute("name"))
+            generateHousingDropdown(resourceGen.getElementsByTagName("select")[0], resourceGen.getAttribute("name"))
         }
         saveGame()
     })
@@ -328,8 +340,8 @@ function generateHousingDropdown(select, type) {
     for (house of stats.houses) {
         if (house.occupation == type) {
             var i = 0
-            for(key of Object.keys(stats.resources)){
-                if(key == type && house.tier >= i){
+            for (key of Object.keys(stats.resources)) {
+                if (key == type && house.tier >= i) {
                     let option = document.createElement("option")
                     option.value = house.number
                     option.innerHTML = `Manager #${house.number}`
@@ -346,14 +358,101 @@ function generateHousingDropdown(select, type) {
     for (house of stats.houses) {
         if (house.occupation == "none") {
             var i = 0
-            for(key of Object.keys(stats.resources)){
-                if(key == type && house.tier >= i){
+            for (key of Object.keys(stats.resources)) {
+                if (key == type && house.tier >= i) {
                     let option = document.createElement("option")
                     option.value = house.number
                     option.innerHTML = `Manager #${house.number}`
                     select.appendChild(option)
                 }
                 i++
+            }
+        }
+    }
+}
+
+function generateRebirthScreen() {
+    let rb = document.getElementById("rebirthScreen")
+    let divs = rb.getElementsByTagName("div")
+
+    divs[1].innerHTML = `
+    <b>Current level:</b> ${stats.experience.level} <br> <br>
+    <b>Curent xp:</b> ${stats.experience.xp} <br> <br>
+    <b>Available perk points:</b> ${stats.experience.pp} <br> <br>
+    <b>Xp needed until next level:</b> ${levelTotalXpToLevel(stats.experience.level + 1)} <br> <br>
+    `
+
+    while (divs[2].firstChild) { //clean up last tree
+        divs[2].removeChild(divs[2].lastChild)
+    }
+    let locked = false
+    for (let [tier, perks] of Object.entries(perksList)) {
+        if (stats.perks[tier] == undefined) stats.perks.push([])
+        let tierBox = document.createElement("div")
+        tierBox.classList.add("tierBox")
+        let label = document.createElement("label")
+        label.classList.add("tierLabel")
+        label.innerHTML = `Tier ${parseInt(tier) + 1}`
+        if (locked) label.innerHTML += `- locked`
+        tierBox.appendChild(label)
+        for (let [perkName, perk] of Object.entries(perks)) {
+            let upgrade = document.createElement("button")
+            upgrade.innerHTML = perkName
+            let buyable = locked
+
+            upgrade.addEventListener("click", function () {
+                if (buyable) {
+                    alert("sorry you can't buy this curently")
+                    return
+                }
+                if (stats.experience.pp <= 0) {
+                    alert("sorry, but you don't have any perk points left")
+                    return
+                }
+                if (confirm("Are you sure you want to restart your game?") || comitted) {
+                    comitted = true
+                    stats.experience.pp--
+                    stats.perks[tier].push(perkName)
+                    applyPerk(tier, perkName)
+                    if (tier > 0) for (let i = 0; i < tier; i++) {
+                        for (let perkName of Object.keys(perksList[i])) {
+                            removePerk(i, perkName)
+                            stats.perks[i] = stats.perks[i].filter(e => e != perkName)
+                        }
+                    }
+
+                    generateRebirthScreen()
+                }
+            })
+
+            let text = document.createElement("span")
+            text.classList.add("perkToolTip")
+            text.innerHTML = perk.text
+            if (stats.perks[tier].includes(perkName)) upgrade.disabled = true
+            else locked = true
+            upgrade.appendChild(text)
+            tierBox.appendChild(upgrade)
+        }
+        divs[2].appendChild(tierBox)
+    }
+}
+
+
+function applyPerk(tier, perkName) {
+    for (effect of perksList[tier][perkName].effects) {
+        if (effect.attribute == "value" || effect.attribute == "speed" || effect.attribute == "skillGain") {
+            if (effect.element == "all") for (element of Object.keys(stats.resources)) {
+                stats[effect.attribute][element][`perks${effect.type}`] += effect.change
+            }
+        }
+    }
+}
+
+function removePerk(tier, perkName) {
+    for (effect of perksList[tier][perkName].effects) {
+        if (effect.attribute == "value" || effect.attribute == "speed" || effect.attribute == "skillGain") {
+            if (effect.element == "all") for (element of Object.keys(stats.resources)) {
+                stats[effect.attribute][element][`perks${effect.type}`] -= effect.change
             }
         }
     }

@@ -13,48 +13,64 @@
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "stone": {
             "base": 10.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "iron": {
             "base": 60.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "crafting": {
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "coal": {
             "base": 30.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "gold": {
             "base": 120.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "copper": {
             "base": 10.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "tin": {
             "base": 45.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         }
     },
     "value": {
@@ -62,43 +78,122 @@
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "stone": {
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "iron": {
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "coal": {
             "base": 25.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "gold": {
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "copper": {
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         },
         "tin": {
             "base": 1.0,
             "items": 0,
             "skills+": 0,
-            "skills*": 1
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        }
+    },
+    "skillGain": {
+        "wood": {
+            "base": 1.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "stone": {
+            "base": 10.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "iron": {
+            "base": 60.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "crafting": {
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "coal": {
+            "base": 30.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "gold": {
+            "base": 120.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "copper": {
+            "base": 10.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
+        },
+        "tin": {
+            "base": 45.0,
+            "items": 0,
+            "skills+": 0,
+            "skills*": 1,
+            "perks+":0,
+            "perks*":1
         }
     },
     "config": {
@@ -111,6 +206,8 @@
         "torch": 0
     },
     "experience": {
+        "level": 1,
+        "pp": 0,
         "xp": 0,
         "gain": {
             "wood": 1,
@@ -157,7 +254,12 @@
         "levels": false,
         "skills": false,
         "ores": false,
-        "housing": false
+        "housing": false,
+        "rebirth":false
     },
-    "houses": []
+    "houses": [],
+    "perks":[],
+    "keepers":{
+        "skills":false
+    }
 }

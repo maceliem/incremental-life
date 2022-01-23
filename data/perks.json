@@ -1,0 +1,62 @@
+[
+    {
+        "patient": {
+            "text": "Increase base value of everyting by 10 times, but also increase their speed by 2 times",
+            "effects": [
+                {
+                    "attribute": "value",
+                    "element": "all",
+                    "change": 10,
+                    "type": "*"
+                },
+                {
+                    "attribute": "speed",
+                    "element": "all",
+                    "change": 2,
+                    "type": "*"
+                }
+            ]
+        },
+        "skillfull": {
+            "text": "Increase all skill gain by 4 times",
+            "effects": [
+                {
+                    "attribute": "skillGain",
+                    "element": "all",
+                    "change": 4,
+                    "type": "*"
+                }
+            ]
+        },
+        "crafty": {
+            "text": "Unlock new advanced tools",
+            "effects": [
+                {
+                    "attribute": "unlock",
+                    "element": "advancedTools"
+                }
+            ]
+        }
+    },
+    {
+        "photographicMemory": {
+            "text": "Whenever you rebirth (including this one), you keep your skill progress from your last life",
+            "effects": [
+                {
+                    "attribute": "keep",
+                    "element": "skills"
+                }
+            ]
+        },
+        "headStart": {
+            "text": "Whenever you rebirth (including this one), you keep up to 100 of each resourse from your last life",
+            "effects": [
+                {
+                    "attribute": "keep",
+                    "element": "resources",
+                    "amount": 100
+                }
+            ]
+        }
+    }
+]

@@ -4,20 +4,23 @@
         "element-color": [38, 91, 235],
         "hover-element-color": [29, 75, 201],
         "clicked-element-color": [23, 60, 163],
-        "bar-color" : [0, 139, 194]
+        "bar-color" : [0, 139, 194],
+        "main-color-bright":[95, 95, 230]
     },
     "Green": {
         "main-color": [0, 121, 0],
         "element-color": [29, 175, 53],
         "hover-element-color": [27, 151, 48],
         "clicked-element-color": [22, 124, 39],
-        "bar-color" : [32, 194, 0]
+        "bar-color" : [32, 194, 0],
+        "main-color-bright":[95, 230, 95]
     },
     "Red": {
         "main-color": [121, 0, 0],
         "element-color": [201, 19, 19],
         "hover-element-color": [180, 16, 16],
         "clicked-element-color": [161, 14, 14],
-        "bar-color" : [185, 59, 59]
+        "bar-color" : [185, 59, 59],
+        "main-color-bright":[230, 95, 95]
     }
 }

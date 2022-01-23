@@ -28,6 +28,8 @@ fetch("data/resourceNeeds.json")
     .then(data => {
         requirements = data
     });
+
+var comitted = false
 //when bar is pressed, it will go up and generate a resource of type, if we have requirements in inventory
 function runResourceBar(type) {
     var requirement = requirements[type]
@@ -93,17 +95,19 @@ function saveGame() {
 }
 
 function loadGame() {
-    var data = JSON.parse(localStorage.getItem("save"))
-    for (key of Object.keys(data)) {
-        for (element of Object.keys(data[key])) {
-            stats[key][element] = data[key][element]
-        }
-    }
+    loadElement(stats, JSON.parse(localStorage.getItem("save")))
     generateskillTree()
     doOftens()
     changeColor(stats.config.color)
     generateHousing()
     unlockUnlocked()
+}
+
+function loadElement(pos, data) {
+    for (let [key, value] of Object.entries(data)) {
+        if (typeof value == "object") loadElement(pos[key], value)
+        else pos[key] = value
+    }
 }
 
 //switch main thing to the one with id
@@ -181,6 +185,7 @@ function resetStats() {
 
 function doOftens() {
     checkUnlocks()
+    checkLevelUp()
     updateValues()
     saveGame()
 }
@@ -246,6 +251,9 @@ function unlockUnlocked() {
             resourceGen.appendChild(select)
         }
     }
+    if(stats.unlocks.rebirth) {
+        document.getElementById("rebirthScreenButton").style.visibility = "visible"
+    }
 }
 
 function SkillTotalXpToLevel(level) {
@@ -264,6 +272,23 @@ function checkSkillUp(skillName) {
         stats.skills.points[skillName]++
         popUp(`+1 ${skillName} skill point`)
 
+    }
+}
+
+function levelTotalXpToLevel(level) {
+    return Math.floor(Math.pow(4, level) * 250)
+}
+
+function checkLevelUp() {
+    let required = levelTotalXpToLevel(stats.experience.level)
+    if (stats.experience.xp >= required) {
+        if(!stats.unlocks.rebirth){
+            stats.unlocks.rebirth = true
+            document.getElementById("rebirthScreenButton").style.visibility = "visible"
+        }
+        stats.experience.level++
+        stats.experience.pp++
+        popUp(`Level up. Rebirth to buy new perks`)
     }
 }
 
@@ -327,4 +352,39 @@ function popUp(text) {
             clearInterval(timer)
         }
     }, 100)
+}
+
+function beginRebirth() {
+    if (confirm("Are you sure you want to restart your game?") || comitted) {
+        comitted = false
+        fetch("stats.json")
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                stats.resources = data.resources
+                for (attribute of ["speed", "value", "skillGain"]) {
+                    for (element of Object.keys(stats.resources)) {
+                        stats[attribute][element].base = data[attribute][element].base
+                        stats[attribute][element].items = data[attribute][element].items
+                        stats[attribute][element]["skills+"] = data[attribute][element]["skills+"]
+                        stats[attribute][element]["skills*"] = data[attribute][element]["skills*"]
+                    }
+                }
+                stats.inventory = data.inventory
+                if (!stats.keepers.skills) {
+                    stats.skills = data.skills
+                    stats.unlocks.ores = data.unlocks.ores
+                    stats.unlocks.housing = data.unlocks.housing
+                }
+                stats.houses = data.houses
+                switchMenu('resource')
+                doOftens()
+            });
+    }
+}
+
+function goBack(){
+    if(!comitted)switchMenu('resource')
+    else alert("Sorry kiddo, buy you're already comitted")
 }

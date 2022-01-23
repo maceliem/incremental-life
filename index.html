@@ -21,6 +21,7 @@
             <button id="craftingButton" onclick="switchMenu('crafting')">crafting</button>
             <button id="skillsButton" onclick="switchMenu('skills')">skills</button>
             <button id="housingButton" onclick="switchMenu('housing')">housing</button>
+            <button id="rebirthScreenButton" onclick="generateRebirthScreen(); switchMenu('rebirthScreen')">rebirth</button>
         </div>
 
         <!--resourceGen page-->
@@ -196,6 +197,13 @@
         </div>
     </div>
     <div id="popupContainer">
+    </div>
+    <div class="main" id="rebirthScreen" data-type="grid">
+        <div><h1>Rebirth</h1><p>Use your well earned levels to buy new perks - To buy higher tier perks, you need all of the lower tier ones, but in doing that, you will also lose all the lower tier ones</p></div>
+        <div>kage</div>
+        <div>kage</div>
+        <button onclick="goBack()">Go back</button>
+        <button onclick="beginRebirth()">Be reborn</button>
     </div>
 </body>
 
