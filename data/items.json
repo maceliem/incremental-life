@@ -11,7 +11,7 @@
             {"unlock":"wood"},
             {"speed":{"wood":-0.3}},
             {"speed":{"wood":-0.2}},
-            {"speed":{"wood":-0.2}},
+            {"speed":{"wood":-0.1}},
             {"speed":{"wood":-0.1}}
         ],
         "craftSpeed":[
@@ -36,10 +36,10 @@
             {"unlock":"stone"},
             {"speed":{"stone":-4}},
             {"speed":{"stone":-2}},
-            {"speed":{"stone":-2, "iron":-15}},
-            {"speed":{"stone":-2, "iron":-15}},
-            {"speed":{"stone":-1, "iron":-10}},
-            {"speed":{"stone":-1, "iron":-10}}
+            {"speed":{"stone":-1, "iron":-5}},
+            {"speed":{"stone":-1, "iron":-5}},
+            {"speed":{"stone":-1, "iron":-2}},
+            {"speed":{"iron":-2}}
         ],
         "craftSpeed":[
             5.0,
@@ -53,8 +53,8 @@
     },
     "torch": {
         "costs":[
-            {"wood":100, "coal":50},
-            {"wood":200, "coal":200}
+            {"wood":500, "coal":50},
+            {"wood":1000, "coal":200}
         ],
         "modifier":[
             {"unlock":"copper"},
@@ -63,6 +63,74 @@
         "craftSpeed":[
             30.0,
             60.0
+        ]
+    },
+    "shovel":{
+        "costs":[
+            {"wood":15},
+            {"wood":50},
+            {"wood":100, "stone":50}
+        ],
+        "modifier":[
+            {"unlock":"dirt"},
+            {"speed":{"dirt":-5}},
+            {"speed":{"dirt":-5}, "unlock":"sand"}
+        ],
+        "craftSpeed":[
+            60.0,
+            60.0,
+            60.0
+        ]
+    },
+    "drill":{
+        "costs":[
+            {"iron":10, "coal":5},
+            {"iron":50, "coal":20},
+            {"iron":200, "coal":50, "gold":5}
+        ],
+        "modifier":[
+            {"speed":{"mining":-2, "stone":10}},
+            {"speed":{"mining":-2, "stone":10}},
+            {"speed":{"mining":-2, "stone":10}}
+        ],
+        "craftSpeed":[
+            20.0,
+            40.0,
+            60.0
+        ]
+    },
+    "detector":{
+        "costs":[
+            {"iron":10, "copper":20, "tin":10, "gold":2},
+            {"iron":50, "copper":100, "tin":20, "gold":10},
+            {"iron":200, "copper":400, "tin":100, "gold":50}
+        ],
+        "modifier":[
+            {"value":{"mining":1, "stone":-1}},
+            {"value":{"mining":1, "stone":-1}},
+            {"value":{"mining":1, "stone":-1}}
+        ],
+        "craftSpeed":[
+            240.0,
+            360.0,
+            480.0
+        ]
+    },
+    "glasses":{
+        "costs":[
+            {"glass":2},
+            {"glass":10},
+            {"glass":50}
+        ],
+        "modifier":[
+            {"skillGain":{"all":1}},
+            {"skillGain":{"all":1}},
+            {"skillGain":{"all":1}}
+        ],
+        "craftSpeed":[
+            180.0,
+            240.0,
+            320.0
         ]
     }
 }

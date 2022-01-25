@@ -32,6 +32,18 @@
                     onclick="runResourceBar('wood')"></progress>
                 <p id="woodCounter">0</p>
             </div>
+            <div name="dirt" class="resourceGen" style="display: none;">
+                <label>dirt</label>
+                <progress data-active="false" id="dirtBar" value="0" max="100"
+                    onclick="runResourceBar('dirt')"></progress>
+                <p id="dirtCounter">0</p>
+            </div>
+            <div name="sand" class="resourceGen" style="display: none;">
+                <label>sand</label>
+                <progress data-active="false" id="sandBar" value="0" max="100"
+                    onclick="runResourceBar('sand')"></progress>
+                <p id="sandCounter">0</p>
+            </div>
             <div name="stone" class="resourceGen">
                 <label>stone</label>
                 <progress data-active="false" id="stoneBar" value="0" max="100"
@@ -101,6 +113,42 @@
                 <img src="img/torch.svg" alt="test">
                 <div>
                     <progress data-active="false" id="torchBar" value="0" max="100"></progress>
+                    <p></p>
+                </div>
+                <ul class="cost">
+                </ul>
+                <ul class="reward">
+                </ul>
+            </div>
+            <div id="shovel" class="craftElement" onclick="craft('shovel')" style="display: none;">
+                <h1>shovel</h1>
+                <img src="img/pickaxe.svg" alt="test">
+                <div>
+                    <progress data-active="false" id="shovelBar" value="0" max="100"></progress>
+                    <p></p>
+                </div>
+                <ul class="cost">
+                </ul>
+                <ul class="reward">
+                </ul>
+            </div>
+            <div id="drill" class="craftElement" onclick="craft('drill')" style="display: none;">
+                <h1>drill</h1>
+                <img src="img/pickaxe.svg" alt="test">
+                <div>
+                    <progress data-active="false" id="drillBar" value="0" max="100"></progress>
+                    <p></p>
+                </div>
+                <ul class="cost">
+                </ul>
+                <ul class="reward">
+                </ul>
+            </div>
+            <div id="detector" class="craftElement" onclick="craft('detector')" style="display: none;">
+                <h1>Ore Detector</h1>
+                <img src="img/pickaxe.svg" alt="test">
+                <div>
+                    <progress data-active="false" id="detectorBar" value="0" max="100"></progress>
                     <p></p>
                 </div>
                 <ul class="cost">

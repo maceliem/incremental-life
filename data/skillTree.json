@@ -51,6 +51,34 @@
                 }
             ],
             "text": "increase base wood reward by an aditional 1"
+        },
+        "knowlegde-logs": {
+            "cost": 100,
+            "max": 1,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "skillGain",
+                    "element": "all",
+                    "change": 2,
+                    "type": "*"
+                }
+            ],
+            "text": "Double all skill gain"
+        },
+        "natural-growth": {
+            "cost": 50,
+            "max": 5,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "speed",
+                    "element": "all",
+                    "change": -0.05,
+                    "type": "*"
+                }
+            ],
+            "text": "Reduce time of everyting by 5%"
         }
     },
     "stone": {
@@ -93,6 +121,20 @@
                 }
             ],
             "text": "increase speed of all mining by 2%"
+        },
+        "wealthy-rocks": {
+            "cost": 20,
+            "max": 1,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "value",
+                    "element": "all",
+                    "change": 1,
+                    "type": "*"
+                }
+            ],
+            "text": "Double value of all resources"
         }
     },
     "iron": {
@@ -107,12 +149,26 @@
                 }
             ],
             "text": "unlock multiple new metals to mine"
+        },
+        "magnetic-speed": {
+            "cost": 2,
+            "max": 3,
+            "requirements": null,
+            "effects": [
+                {
+                    "attribute": "speed",
+                    "element": "iron",
+                    "change": -0.1,
+                    "type": "*"
+                }
+            ],
+            "text": "Reduce iron time by 10%"
         }
     },
     "crafting": {
         "impatient-crafter": {
             "cost": 2,
-            "max": 1,
+            "max": 3,
             "requirements": null,
             "effects": [
                 {

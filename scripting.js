@@ -57,7 +57,7 @@ function runResourceBar(type) {
                 progress.value = 0
                 stats.resources[type] += calcEffects(stats.value[type])
                 stats.experience.xp += stats.experience.gain[type]
-                stats.skills.xp[type]++
+                stats.skills.xp[type] += calcEffects(stats.skillGain[type])
 
 
                 var manager = false
@@ -105,7 +105,8 @@ function loadGame() {
 
 function loadElement(pos, data) {
     for (let [key, value] of Object.entries(data)) {
-        if (typeof value == "object") loadElement(pos[key], value)
+        if (key == "houses" || key == "upgrades" || key == "perks" || key == "gain") pos[key] = value
+        else if (typeof value == "object") loadElement(pos[key], value)
         else pos[key] = value
     }
 }
@@ -141,7 +142,7 @@ function craft(item) {
         progress.dataset.active = true
         doOftens()
         var timer = setInterval(function () {//interval to animate progress going up
-            progress.value += (100 / (calcCraftSpeed(items[item].craftSpeed[curTier]) * 10)) / 10;
+            progress.value += (100 / (calcEffects(stats.speed.crafting, items[item].craftSpeed[curTier]) * 10)) / 10;
 
             //when progress is done
             if (progress.value == progress.max) {
@@ -154,12 +155,18 @@ function craft(item) {
                 for ([attribute, modified] of Object.entries(items[item].modifier[curTier])) {
                     for ([element, value] of Object.entries(modified)) {
                         if (attribute != "unlock") {
-                            applyEffect({attribute:attribute, element:element, type:"",change:value},"items")
+                            applyEffect({ attribute: attribute, element: element, type: "", change: value }, "items")
+                        }
+                        else {
+                            let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
+                                return element.getAttribute("name") == modified
+                            })
+                            resourceGen.style.display = "flex"
                         }
                     }
                 }
                 stats.experience.xp += stats.experience.gain.crafting
-                stats.skills.xp.crafting += 10
+                stats.skills.xp[type] += calcEffects(stats.skillGain.crafting)
                 checkSkillUp("crafting")
                 doOftens()
                 clearInterval(timer)
@@ -217,7 +224,7 @@ function unlockUnlocked() {
         document.getElementById("skillsButton").style.visibility = "visible"
     }
     if (stats.unlocks.ores) {
-        for (type of ["coal", "gold", "copper", "tin"]) {
+        for (type of ["coal", "gold"]) {
             let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
                 return element.getAttribute("name") == type
             })
@@ -235,24 +242,45 @@ function unlockUnlocked() {
     if (stats.unlocks.housing) {
         document.getElementById("housingButton").style.visibility = "visible"
         for (let resourceGen of document.getElementsByClassName("resourceGen")) {
-            let select = document.createElement("select")
-            generateHousingDropdown(select, resourceGen.getAttribute("name"))
-            select.addEventListener("change", function () {
-                let val = select.value
-                if (val == "none") {
-                    let house = stats.houses.find(element => {
-                        return element.occupation == resourceGen.getAttribute("name")
-                    })
-                    house.occupation = val
-                }
-                else stats.houses[val].occupation = resourceGen.getAttribute("name")
+            if (resourceGen.getElementsByTagName("select")[0] == undefined) {
+
+                let select = document.createElement("select")
                 generateHousingDropdown(select, resourceGen.getAttribute("name"))
-            })
-            resourceGen.appendChild(select)
+                select.addEventListener("change", function () {
+                    let val = select.value
+                    if (val == "none") {
+                        let house = stats.houses.find(element => {
+                            return element.occupation == resourceGen.getAttribute("name")
+                        })
+                        house.occupation = val
+                    }
+                    else stats.houses[val].occupation = resourceGen.getAttribute("name")
+                    generateHousingDropdown(select, resourceGen.getAttribute("name"))
+                })
+                resourceGen.appendChild(select)
+            }
         }
     }
-    if(stats.unlocks.rebirth) {
+    if (stats.inventory.torch > 0) {
+        let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
+            return element.getAttribute("name") == "copper"
+        })
+        resourceGen.style.display = "flex"
+    }
+    if (stats.inventory.torch > 1) {
+        let resourceGen = Array.from(document.getElementsByClassName("resourceGen")).find(element => {
+            return element.getAttribute("name") == "tin"
+        })
+        resourceGen.style.display = "flex"
+    }
+    if (stats.unlocks.rebirth) {
         document.getElementById("rebirthScreenButton").style.visibility = "visible"
+    }
+
+    if (stats.unlocks.advancedTools) {
+        for (item of ["drill", "detector"]) {
+            document.getElementById(item).style.display = "block"
+        }
     }
 }
 
@@ -276,13 +304,13 @@ function checkSkillUp(skillName) {
 }
 
 function levelTotalXpToLevel(level) {
-    return Math.floor(Math.pow(4, level) * 250)
+    return Math.floor(Math.pow(2, level) * 500)
 }
 
 function checkLevelUp() {
     let required = levelTotalXpToLevel(stats.experience.level)
     if (stats.experience.xp >= required) {
-        if(!stats.unlocks.rebirth){
+        if (!stats.unlocks.rebirth) {
             stats.unlocks.rebirth = true
             document.getElementById("rebirthScreenButton").style.visibility = "visible"
         }
@@ -292,13 +320,8 @@ function checkLevelUp() {
     }
 }
 
-function calcEffects(element) {
-    return (element.base + element.items + element["skills+"]) * element["skills*"]
-}
-
-function calcCraftSpeed(baseTime) {
-    var element = stats.speed.crafting
-    return (baseTime + element.items + element["skills+"]) * element["skills*"]
+function calcEffects(element, baseTime = 0) {
+    return (element.base + baseTime + element.items + element["skills+"] + element["perks+"]) * element["skills*"] * element["perks*"]
 }
 
 function skillMenuSwap(dir) {
@@ -362,15 +385,17 @@ function beginRebirth() {
                 return response.json();
             })
             .then(data => {
-                for(let [resource, amount] of Object.entries(stats.resources)){
-                    if(amount > stats.keepers.resources) stats.resources[resource] = stats.keepers.resources
+                for (let [resource, amount] of Object.entries(stats.resources)) {
+                    if (amount > stats.keepers.resources) stats.resources[resource] = stats.keepers.resources
                 }
                 for (attribute of ["speed", "value", "skillGain"]) {
                     for (element of Object.keys(stats.resources)) {
                         stats[attribute][element].base = data[attribute][element].base
                         stats[attribute][element].items = data[attribute][element].items
-                        stats[attribute][element]["skills+"] = data[attribute][element]["skills+"]
-                        stats[attribute][element]["skills*"] = data[attribute][element]["skills*"]
+                        if (!stats.keepers.skills) {
+                            stats[attribute][element]["skills+"] = data[attribute][element]["skills+"]
+                            stats[attribute][element]["skills*"] = data[attribute][element]["skills*"]
+                        }
                     }
                 }
                 stats.inventory = data.inventory
@@ -386,7 +411,7 @@ function beginRebirth() {
     }
 }
 
-function goBack(){
-    if(!comitted)switchMenu('resource')
+function goBack() {
+    if (!comitted) switchMenu('resource')
     else alert("Sorry kiddo, buy you're already comitted")
 }

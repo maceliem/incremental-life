@@ -1,18 +1,18 @@
 [
     {
         "patient": {
-            "text": "Increase base value of everyting by 10 times, but also increase their speed by 2 times",
+            "text": "Increase base value of everyting by 10 times, but also increase their speed by 4 times",
             "effects": [
                 {
                     "attribute": "value",
                     "element": "all",
-                    "change": 10,
+                    "change": 9,
                     "type": "*"
                 },
                 {
                     "attribute": "speed",
                     "element": "all",
-                    "change": 2,
+                    "change": 4,
                     "type": "*"
                 }
             ]

@@ -124,10 +124,10 @@ function updateValues() {
             let cur
             if (stats.skills.upgrades[skill] == undefined) cur = 0
             else cur = stats.skills.upgrades[skill]
-            var text = button.getElementsByTagName("span")[0]
+            let text = button.getElementsByTagName("span")[0]
             text.innerHTML = `<b>${skill}</b> <br> ${attributes.text} <br> costs: ${attributes.cost} <br> ${cur}/${attributes.max}`
             if (attributes.requirements != null) {
-                var i = false
+                let i = false
                 for (requirement of attributes.requirements) {
                     if (stats.skills.upgrades[requirement] == undefined) {
                         i = true
@@ -224,6 +224,7 @@ function makeHouse(number) {
         }
     }
     button.addEventListener('click', function () {
+        doOftens()
         let text = button.getElementsByTagName("span")[0]
         if (stats.houses[button.dataset.number] == undefined) {
             for ([type, value] of Object.entries(housingCosts[0].buildCost)) {
@@ -313,7 +314,7 @@ function makeHouse(number) {
 }
 
 function displayNumber(number) {
-    var num = number.toString()
+    var num = Math.floor(number).toString()
     if (num.length < 7) { return num }
 
     else if (stats.config.numberFormat == "scientific") {
@@ -377,15 +378,16 @@ function generateRebirthScreen() {
 
     divs[1].innerHTML = `
     <b>Current level:</b> ${stats.experience.level} <br> <br>
-    <b>Curent xp:</b> ${stats.experience.xp} <br> <br>
+    <b>Curent xp:</b> ${displayNumber(stats.experience.xp)} <br> <br>
     <b>Available perk points:</b> ${stats.experience.pp} <br> <br>
-    <b>Xp needed until next level:</b> ${levelTotalXpToLevel(stats.experience.level + 1)} <br> <br>
+    <b>Xp needed until next level:</b> ${displayNumber(levelTotalXpToLevel(stats.experience.level))} <br> <br>
     `
 
     while (divs[2].firstChild) { //clean up last tree
         divs[2].removeChild(divs[2].lastChild)
     }
     let locked = false
+    let tierLock = 0
     for (let [tier, perks] of Object.entries(perksList)) {
         if (stats.perks[tier] == undefined) stats.perks.push([])
         let tierBox = document.createElement("div")
@@ -401,7 +403,7 @@ function generateRebirthScreen() {
             let buyable = locked
 
             upgrade.addEventListener("click", function () {
-                if (buyable) {
+                if (buyable && tier != tierLock) {
                     alert("sorry you can't buy this curently")
                     return
                 }
@@ -429,7 +431,10 @@ function generateRebirthScreen() {
             text.classList.add("perkToolTip")
             text.innerHTML = perk.text
             if (stats.perks[tier].includes(perkName)) upgrade.disabled = true
-            else locked = true
+            else {
+                locked = true
+                tierLock = tier
+            }
             upgrade.appendChild(text)
             tierBox.appendChild(upgrade)
         }
@@ -445,11 +450,14 @@ function applyPerk(tier, perkName) {
                 stats[effect.attribute][element][`perks${effect.type}`] += effect.change
             }
         }
-        if(effect.attribute == "keep"){
-            if(effect.element == "resources"){
+        if (effect.attribute == "keep") {
+            if (effect.element == "resources") {
                 stats.keepers[effect.element] = Math.max(stats.keepers[effect.element], effect.amount)
             }
             else stats.keepers[effect.element] = true
+        }
+        if (effect.attribute == "unlock") {
+            stats.unlocks[effect.element] = true
         }
     }
 }
@@ -461,11 +469,14 @@ function removePerk(tier, perkName) {
                 stats[effect.attribute][element][`perks${effect.type}`] -= effect.change
             }
         }
-        if(effect.attribute == "keep"){
-            if(effect.element == "resources"){
-                if(stats.keepers[effect.element] == effect.amount) stats.keepers[effect.element] = 0
+        if (effect.attribute == "keep") {
+            if (effect.element == "resources") {
+                if (stats.keepers[effect.element] == effect.amount) stats.keepers[effect.element] = 0
             }
             else stats.keepers[effect.element] = false
+        }
+        if (effect.attribute == "unlock") {
+            stats.unlocks[effect.element] = false
         }
     }
 }
