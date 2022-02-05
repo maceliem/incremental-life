@@ -4,16 +4,15 @@
  * @returns {void}
  */
 function runResourceBar(type) {
-
     //if we need tools first, alert it and stop
     if ((text = checkToolNeed(requirements[type])) != ``) {
         alert(`${text} first`)
         return
     }
-    let progress = document.getElementById(`${type}Bar`)
-
+    var progress = document.getElementById(`${type}Bar`)
+    
     //don't do anything if already running
-    if (progress.dataset.active) return
+    if (progress.dataset.active != "false") return
     progress.dataset.active = true
 
     //interval to animate progress going up and take time

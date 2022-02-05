@@ -1,3 +1,7 @@
+/**
+ * change curent menu
+ * @param {string} id - id of menu element
+ */
 function switchMenu(id) {
     for (page of document.getElementsByClassName("main")) {
         page.style.display = "none"
@@ -6,6 +10,9 @@ function switchMenu(id) {
     page.style.display = page.dataset.type
 }
 
+/**
+ * things to do often
+ */
 function doOftens() {
     checkUnlocks()
     checkLevelUp()
@@ -13,6 +20,9 @@ function doOftens() {
     saveGame()
 }
 
+/**
+ * check for passive unlocks
+ */
 function checkUnlocks() {
     if (!stats.unlocks.crafting) {
         if (stats.resources.wood >= 10) {
@@ -32,6 +42,9 @@ function checkUnlocks() {
     }
 }
 
+/**
+ * unlock things
+ */
 function unlockUnlocked() {
     if (stats.unlocks.crafting) {
         document.getElementById("craftingButton").style.visibility = "visible"
@@ -100,10 +113,25 @@ function unlockUnlocked() {
     }
 }
 
-function calcEffects(element, baseTime = 0) {
-    return (element.base + baseTime + element.items + element["skills+"] + element["perks+"]) * element["skills*"] * element["perks*"]
+/**
+ * calculate total values after all effects
+ * @param {object} element - element with effect changes
+ * @param {number} [baseValue=0] - base value
+ * @returns {number} - total value
+ */
+function calcEffects(element, baseValue = 0) {
+    return (element.base + baseValue + element.items + element["skills+"] + element["perks+"]) * element["skills*"] * element["perks*"]
 }
 
+/**
+ * apply effect to category
+ * @param {object} effect - effect to apply
+ * @param {string} effect.attribute - type of effect
+ * @param {string} effect.element - element changed
+ * @param {number} [effect.change] - amount changed
+ * @param {"+"|"*"} [effect.type] - type of change
+ * @param {*} category 
+ */
 function applyEffect(effect, category) {
     if (effect.attribute != "unlock") {
         if (effect.element == "mining") {
@@ -119,6 +147,10 @@ function applyEffect(effect, category) {
     }
 }
 
+/**
+ * show a small popup notifikation
+ * @param {string} text - text of popup
+ */
 function popUp(text) {
     let popUp = document.createElement("div")
     popUp.innerHTML = text

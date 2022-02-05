@@ -1,11 +1,11 @@
-var items
-var stats
-var requirements
-var css = document.styleSheets[0]
-var colors
-var skillTree
-var housingCosts
-var perksList
+let items
+let stats
+let requirements
+let css = document.styleSheets[0]
+let colors
+let skillTree
+let housingCosts
+let perksList
 
 
 fetch("data/items.json")

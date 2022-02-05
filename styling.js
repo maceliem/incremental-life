@@ -1,5 +1,8 @@
 
-//change colorscheme of everything to color
+/**
+ * change colorscheme of everything to color
+ * @param {string} color - name of color
+ */
 function changeColor(color) {
     var scheme = colors[color]
     var style = document.documentElement.style
@@ -14,7 +17,7 @@ function changeColor(color) {
     saveGame()
 }
 
-//update all textvalues
+//update all textvalues !!! mangler at uddeles
 function updateValues() {
 
     //update resource indicators
@@ -105,9 +108,14 @@ function updateValues() {
     }
 }
 
+/**
+ * display number with formatting
+ * @param {number} number - number to be displayed
+ * @returns {string}
+ */
 function displayNumber(number) {
     var num = Math.floor(number).toString()
-    if (num.length < 7) { return num }
+    if (num.length < 7) return num 
 
     else if (stats.config.numberFormat == "scientific") {
         return `${num.charAt(0)},${num.charAt(1) + num.charAt(2)}E+${num.length - 1}`
@@ -121,6 +129,11 @@ function displayNumber(number) {
     }
 }
 
+/**
+ * change config value
+ * @param {string} config - name of config
+ * @param {any} next - new value
+ */
 function changeConfig(config, next) {
     stats.config[config] = next
     updateValues()
